@@ -128,6 +128,9 @@ export function supportsMultimodalFunctionResponse(_modelId: string, ..._args: a
 }
 
 export function resolveModel(modelId: string, ..._args: any[]): string {
+  if (modelId?.startsWith('gemini-') || modelId?.startsWith('gemma-')) {
+    return OLLAMA_DEFAULT_MODEL;
+  }
   return modelId;
 }
 

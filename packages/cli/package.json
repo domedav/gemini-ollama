@@ -10,7 +10,8 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "gemini-ollama": "dist/index.js"
+    "gemini-ollama": "dist/index.js",
+    "gmol": "dist/index.js"
   },
   "scripts": {
     "build": "node ../../scripts/build_package.js",

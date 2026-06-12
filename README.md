@@ -213,24 +213,32 @@ For Google Workspace accounts and other authentication methods, see the
 
 ## 🚀 Getting Started
 
+### Prerequisites
+
+Gemini CLI has been decoupled from Google APIs to operate exclusively as a local client for Ollama (also accessible via `gemini-ollama` or `gmol`). Before starting, you must ensure that:
+1. **Ollama is installed and running** (`ollama serve`).
+2. **A model is pulled** locally (e.g., `ollama pull llama3`).
+
 ### Basic Usage
 
 #### Start in current directory
 
 ```bash
-gemini
+gmol
 ```
+
+When you first start the app, it will attempt to automatically pick an available Ollama model. **You can explicitly select your preferred model by using the `/model` menu in the chat interface.**
 
 #### Include multiple directories
 
 ```bash
-gemini --include-directories ../lib,../docs
+gmol --include-directories ../lib,../docs
 ```
 
 #### Use specific model
 
 ```bash
-gemini -m gemini-2.5-flash
+gmol -m llama3
 ```
 
 #### Non-interactive mode for scripts

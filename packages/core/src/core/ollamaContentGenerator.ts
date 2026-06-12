@@ -25,7 +25,15 @@ export class OllamaContentGenerator implements ContentGenerator {
   }
 
   private async getModel(requestedModel?: string): Promise<string> {
-    if (requestedModel && requestedModel !== 'auto' && requestedModel !== 'pro' && requestedModel !== 'flash' && requestedModel !== 'flash-lite') {
+    const isLegacyGoogleModel = requestedModel?.startsWith('gemini-') || requestedModel?.startsWith('gemma-');
+    if (
+      requestedModel &&
+      requestedModel !== 'auto' &&
+      requestedModel !== 'pro' &&
+      requestedModel !== 'flash' &&
+      requestedModel !== 'flash-lite' &&
+      !isLegacyGoogleModel
+    ) {
       return requestedModel;
     }
 
