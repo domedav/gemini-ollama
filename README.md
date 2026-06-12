@@ -1,20 +1,16 @@
-# Gemini CLI
+# gemini-ollama (gmol)
 
-[![Gemini CLI CI](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml)
-[![Gemini CLI E2E (Chained)](https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml)
-[![Version](https://img.shields.io/npm/v/@google/gemini-cli)](https://www.npmjs.com/package/@google/gemini-cli)
-[![License](https://img.shields.io/github/license/google-gemini/gemini-cli)](https://github.com/google-gemini/gemini-cli/blob/main/LICENSE)
-[![View Code Wiki](https://assets.codewiki.google/readme-badge/static.svg)](https://codewiki.google/github.com/google-gemini/gemini-cli?utm_source=badge&utm_medium=github&utm_campaign=github.com/google-gemini/gemini-cli)
+[![Gemini Ollama CI](https://github.com/domedav/gemini-ollama/actions/workflows/ci.yml/badge.svg)](https://github.com/domedav/gemini-ollama/actions/workflows/ci.yml)
+[![Version](https://img.shields.io/github/v/release/domedav/gemini-ollama)](https://github.com/domedav/gemini-ollama/releases)
+[![License](https://img.shields.io/github/license/domedav/gemini-ollama)](https://github.com/domedav/gemini-ollama/blob/main/LICENSE)
 
-![Gemini CLI Screenshot](/docs/assets/gemini-screenshot.png)
+![Gemini Ollama Screenshot](/docs/assets/gemini-screenshot.png)
 
-Gemini CLI is an open-source AI agent that brings the power of Gemini directly
-into your terminal. It provides lightweight access to Gemini, giving you the
-most direct path from your prompt to our model.
+`gemini-ollama` (shorthand `gmol`) is an open-source AI agent that brings the power of local LLMs via Ollama directly into your terminal. Rebranded and decoupled from Google's Gemini API, it provides a lightweight, fully private path from your prompt to your local model.
 
-Learn all about Gemini CLI in our [documentation](https://geminicli.com/docs/).
+Learn all about Gemini Ollama in our [documentation](https://geminicli.com/docs/).
 
-## 🚀 Why Gemini CLI?
+## 🚀 Why Gemini Ollama?
 
 - **🎯 Free tier**: 60 requests/min and 1,000 requests/day with personal Google
   account.
@@ -29,7 +25,7 @@ Learn all about Gemini CLI in our [documentation](https://geminicli.com/docs/).
 
 ## 📦 Installation
 
-This version of Gemini CLI (called `gemini-ollama` or `gmol`) is designed to run locally. You can install it by cloning the repository and building it from source.
+This version of Gemini Ollama (called `gemini-ollama` or `gmol`) is designed to run locally. You can install it by cloning the repository and building it from source.
 
 ### Build from Source
 
@@ -62,7 +58,7 @@ releases will not have been fully vetted and may contain regressions or other
 outstanding issues. Please help us test and install with `preview` tag.
 
 ```bash
-npm install -g @google/gemini-cli@preview
+npm install -g gemini-ollama@preview
 ```
 
 ### Stable
@@ -72,7 +68,7 @@ npm install -g @google/gemini-cli@preview
   and validations. Use `latest` tag.
 
 ```bash
-npm install -g @google/gemini-cli@latest
+npm install -g gemini-ollama@latest
 ```
 
 ### Nightly
@@ -82,7 +78,7 @@ npm install -g @google/gemini-cli@latest
   there are pending validations and issues. Use `nightly` tag.
 
 ```bash
-npm install -g @google/gemini-cli@nightly
+npm install -g gemini-ollama@nightly
 ```
 
 ## 📋 Key Features
@@ -111,14 +107,14 @@ npm install -g @google/gemini-cli@nightly
 
 ### GitHub Integration
 
-Integrate Gemini CLI directly into your GitHub workflows with
-[**Gemini CLI GitHub Action**](https://github.com/google-github-actions/run-gemini-cli):
+Integrate Gemini Ollama directly into your GitHub workflows with
+[**Gemini Ollama GitHub Action**](https://github.com/google-github-actions/run-gemini-ollama):
 
 - **Pull Request Reviews**: Automated code review with contextual feedback and
   suggestions
 - **Issue Triage**: Automated labeling and prioritization of GitHub issues based
   on content analysis
-- **On-demand Assistance**: Mention `@gemini-cli` in issues and pull requests
+- **On-demand Assistance**: Mention `@gemini-ollama` in issues and pull requests
   for help with debugging, explanations, or task delegation
 - **Custom Workflows**: Build automated, scheduled and on-demand workflows
   tailored to your team's needs
@@ -141,7 +137,7 @@ for details)
 - **No API key management** - just sign in with your Google account
 - **Automatic updates** to latest models
 
-#### Start Gemini CLI, then choose _Sign in with Google_ and follow the browser authentication flow when prompted
+#### Start Gemini Ollama, then choose _Sign in with Google_ and follow the browser authentication flow when prompted
 
 ```bash
 gemini
@@ -195,7 +191,7 @@ For Google Workspace accounts and other authentication methods, see the
 
 ### Prerequisites
 
-Gemini CLI has been decoupled from Google APIs to operate exclusively as a local client for Ollama (also accessible via `gemini-ollama` or `gmol`). Before starting, you must ensure that:
+Gemini Ollama has been decoupled from Google APIs to operate exclusively as a local client for Ollama (also accessible via `gemini-ollama` or `gmol`). Before starting, you must ensure that:
 1. **Ollama is installed and running** (`ollama serve`).
 2. **A model is pulled** locally (e.g., `ollama pull llama3`).
 
@@ -256,8 +252,8 @@ gemini
 #### Analyze existing code
 
 ```bash
-git clone https://github.com/google-gemini/gemini-cli
-cd gemini-cli
+git clone https://github.com/domedav/gemini-ollama
+cd gemini-ollama
 gemini
 > Give me a summary of all of the changes that went in yesterday
 ```
@@ -282,7 +278,7 @@ gemini
 - [**Custom Commands**](https://www.geminicli.com/docs/cli/custom-commands) -
   Create your own reusable commands.
 - [**Context Files (GEMINI.md)**](https://www.geminicli.com/docs/cli/gemini-md) -
-  Provide persistent context to Gemini CLI.
+  Provide persistent context to Gemini Ollama.
 - [**Checkpointing**](https://www.geminicli.com/docs/cli/checkpointing) - Save
   and resume conversations.
 - [**Token Caching**](https://www.geminicli.com/docs/cli/token-caching) -
@@ -302,7 +298,7 @@ gemini
 ### Advanced Topics
 
 - [**Headless Mode (Scripting)**](https://www.geminicli.com/docs/cli/headless) -
-  Use Gemini CLI in automated workflows.
+  Use Gemini Ollama in automated workflows.
 - [**IDE Integration**](https://www.geminicli.com/docs/ide-integration) - VS
   Code companion.
 - [**Sandboxing & Security**](https://www.geminicli.com/docs/cli/sandbox) - Safe
@@ -328,7 +324,7 @@ gemini
 
 ### Using MCP Servers
 
-Configure MCP servers in `~/.gemini/settings.json` to extend Gemini CLI with
+Configure MCP servers in `~/.gemini/settings.json` to extend Gemini Ollama with
 custom tools:
 
 ```text
@@ -343,7 +339,7 @@ for setup instructions.
 
 ## 🤝 Contributing
 
-We welcome contributions! Gemini CLI is fully open source (Apache 2.0), and we
+We welcome contributions! Gemini Ollama is fully open source (Apache 2.0), and we
 encourage the community to:
 
 - Report bugs and suggest features.
@@ -354,21 +350,21 @@ encourage the community to:
 See our [Contributing Guide](./CONTRIBUTING.md) for development setup, coding
 standards, and how to submit pull requests.
 
-Check our [Official Roadmap](https://github.com/orgs/google-gemini/projects/11)
+Check our [Official Roadmap](https://github.com/orgs/domedav/projects/11)
 for planned features and priorities.
 
 ## 📖 Resources
 
-- **[Free Course](https://learn.deeplearning.ai/courses/gemini-cli-code-and-create-with-an-open-source-agent/information)** -
+- **[Free Course](https://learn.deeplearning.ai/courses/gemini-ollama-code-and-create-with-an-open-source-agent/information)** -
   Learn the basics.
 - **[Official Roadmap](./ROADMAP.md)** - See what's coming next.
 - **[Changelog](https://www.geminicli.com/docs/changelogs)** - See recent
   notable updates.
-- **[NPM Package](https://www.npmjs.com/package/@google/gemini-cli)** - Package
+- **[NPM Package](https://www.npmjs.com/package/gemini-ollama)** - Package
   registry.
-- **[GitHub Issues](https://github.com/google-gemini/gemini-cli/issues)** -
+- **[GitHub Issues](https://github.com/domedav/gemini-ollama/issues)** -
   Report bugs or request features.
-- **[Security Advisories](https://github.com/google-gemini/gemini-cli/security/advisories)** -
+- **[Security Advisories](https://github.com/domedav/gemini-ollama/security/advisories)** -
   Security updates.
 
 ### Uninstall
@@ -384,11 +380,11 @@ for removal instructions.
 - **Security**: [Security Policy](SECURITY.md)
 
 <p align="left">
- <a href="https://www.star-history.com/google-gemini/gemini-cli">
+ <a href="https://www.star-history.com/domedav/gemini-ollama">
   <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=google-gemini/gemini-cli&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=google-gemini/gemini-cli" />
-   <img alt="Star History Rank" src="https://api.star-history.com/badge?repo=google-gemini/gemini-cli" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=domedav/gemini-ollama&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=domedav/gemini-ollama" />
+   <img alt="Star History Rank" src="https://api.star-history.com/badge?repo=domedav/gemini-ollama" />
   </picture>
  </a>
 </p>

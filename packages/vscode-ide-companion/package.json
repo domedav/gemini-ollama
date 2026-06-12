@@ -1,13 +1,13 @@
 {
-  "name": "gemini-cli-vscode-ide-companion",
-  "displayName": "Gemini CLI Companion",
-  "description": "Enable Gemini CLI with direct access to your IDE workspace.",
+  "name": "gemini-ollama-vscode-ide-companion",
+  "displayName": "Gemini Ollama Companion",
+  "description": "Enable Gemini Ollama with direct access to your IDE workspace.",
   "version": "0.48.0-nightly.20260609.g3a13b8eeb",
   "publisher": "google",
   "icon": "assets/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/google-gemini/gemini-cli.git",
+    "url": "https://github.com/domedav/gemini-ollama.git",
     "directory": "packages/vscode-ide-companion"
   },
   "engines": {
@@ -19,7 +19,7 @@
     "AI"
   ],
   "keywords": [
-    "gemini-cli",
+    "gemini-ollama",
     "gemini cli",
     "gemini",
     "gemini code",
@@ -32,12 +32,12 @@
   ],
   "contributes": {
     "configuration": {
-      "title": "Gemini CLI",
+      "title": "Gemini Ollama",
       "properties": {
-        "gemini-cli.debug.logging.enabled": {
+        "gemini-ollama.debug.logging.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Enable detailed logging for debugging the Gemini CLI Companion."
+          "description": "Enable detailed logging for debugging the Gemini Ollama Companion."
         }
       }
     },
@@ -49,21 +49,21 @@
     "commands": [
       {
         "command": "gemini.diff.accept",
-        "title": "Gemini CLI: Accept Diff",
+        "title": "Gemini Ollama: Accept Diff",
         "icon": "$(check)"
       },
       {
         "command": "gemini.diff.cancel",
-        "title": "Gemini CLI: Close Diff Editor",
+        "title": "Gemini Ollama: Close Diff Editor",
         "icon": "$(close)"
       },
       {
-        "command": "gemini-cli.runGeminiCLI",
-        "title": "Gemini CLI: Run"
+        "command": "gemini-ollama.runGeminiCLI",
+        "title": "Gemini Ollama: Run"
       },
       {
-        "command": "gemini-cli.showNotices",
-        "title": "Gemini CLI: View Third-Party Notices"
+        "command": "gemini-ollama.showNotices",
+        "title": "Gemini Ollama: View Third-Party Notices"
       }
     ],
     "menus": {

@@ -1,11 +1,11 @@
 {
-  "name": "@google/gemini-cli",
-  "version": "0.48.0-nightly.20260609.g3a13b8eeb",
-  "description": "Gemini CLI",
+  "name": "gemini-ollama",
+  "version": "0.48.0",
+  "description": "A fully local AI CLI agent powered by Ollama.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/google-gemini/gemini-cli.git"
+    "url": "git+https://github.com/domedav/gemini-ollama.git"
   },
   "type": "module",
   "main": "dist/index.js",
@@ -28,11 +28,11 @@
     "dist"
   ],
   "config": {
-    "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.48.0-nightly.20260609.g3a13b8eeb"
+    "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-ollama/sandbox:0.48.0-nightly.20260609.g3a13b8eeb"
   },
   "dependencies": {
     "@agentclientprotocol/sdk": "^0.16.1",
-    "@google/gemini-cli-core": "file:../core",
+    "gemini-ollama-core": "file:../core",
     "@google/genai": "1.30.0",
     "@iarna/toml": "^2.2.5",
     "@modelcontextprotocol/sdk": "^1.23.0",
@@ -73,7 +73,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@google/gemini-cli-test-utils": "file:../test-utils",
+    "gemini-ollama-test-utils": "file:../test-utils",
     "@types/command-exists": "^1.2.3",
     "@types/hast": "^3.0.4",
     "@types/node": "^20.11.24",

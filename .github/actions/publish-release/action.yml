@@ -1,5 +1,5 @@
 name: 'Publish Release'
-description: 'Builds, prepares, and publishes the gemini-cli packages to npm and creates a GitHub release.'
+description: 'Builds, prepares, and publishes the gemini-ollama packages to npm and creates a GitHub release.'
 
 inputs:
   release-version:
@@ -79,8 +79,8 @@ runs:
       working-directory: '${{ inputs.working-directory }}'
       shell: 'bash'
       run: |
-        git config user.name "gemini-cli-robot"
-        git config user.email "gemini-cli-robot@google.com"
+        git config user.name "gemini-ollama-robot"
+        git config user.email "gemini-ollama-robot@google.com"
 
     - name: '🌿 Create and switch to a release branch'
       working-directory: '${{ inputs.working-directory }}'
@@ -286,13 +286,13 @@ runs:
         INPUTS_PREVIOUS_TAG: '${{ inputs.previous-tag }}'
       shell: 'bash'
       run: |
-        rm -f gemini-cli-bundle.zip
-        (cd bundle && chmod +x gemini.js && zip -r ../gemini-cli-bundle.zip .)
+        rm -f gemini-ollama-bundle.zip
+        (cd bundle && chmod +x gemini.js && zip -r ../gemini-ollama-bundle.zip .)
 
         echo "Testing the generated bundle archive..."
         rm -rf test-bundle
         mkdir -p test-bundle
-        unzip -q gemini-cli-bundle.zip -d test-bundle
+        unzip -q gemini-ollama-bundle.zip -d test-bundle
 
         # Verify it runs and outputs a version
         BUNDLE_VERSION=$(node test-bundle/gemini.js --version | xargs)
@@ -303,7 +303,7 @@ runs:
         fi
         rm -rf test-bundle
 
-        RELEASE_ASSETS=("gemini-cli-bundle.zip")
+        RELEASE_ASSETS=("gemini-ollama-bundle.zip")
 
         # Check for and prepare macOS binaries if they exist
         for arch in arm64 x64; do

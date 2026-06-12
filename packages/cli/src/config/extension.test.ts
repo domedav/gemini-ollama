@@ -27,7 +27,7 @@ import {
   loadSkillsFromDir,
   getRealPath,
   normalizePath,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import {
   loadSettings,
   createTestMergedSettings,
@@ -108,9 +108,9 @@ const mockIntegrityManager = vi.hoisted(() => ({
   verify: vi.fn().mockResolvedValue('verified'),
   store: vi.fn().mockResolvedValue(undefined),
 }));
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('gemini-ollama-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('gemini-ollama-core')>();
   return {
     ...actual,
     logExtensionEnable: mockLogExtensionEnable,
@@ -198,10 +198,10 @@ describe('extension tests', () => {
     });
     vi.mocked(loadSkillsFromDir).mockResolvedValue([]);
     tempHomeDir = getRealPath(
-      fs.mkdtempSync(path.join(os.tmpdir(), 'gemini-cli-test-home-')),
+      fs.mkdtempSync(path.join(os.tmpdir(), 'gemini-ollama-test-home-')),
     );
     tempWorkspaceDir = getRealPath(
-      fs.mkdtempSync(path.join(tempHomeDir, 'gemini-cli-test-workspace-')),
+      fs.mkdtempSync(path.join(tempHomeDir, 'gemini-ollama-test-workspace-')),
     );
     userExtensionsDir = path.join(tempHomeDir, EXTENSIONS_DIRECTORY_NAME);
     mockRequestConsent = vi.fn();

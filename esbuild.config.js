@@ -109,7 +109,7 @@ const cliConfig = {
       __dirname,
       'packages/cli/src/patches/http-proxy-agent.ts',
     ),
-    '@google/gemini-cli-devtools': path.resolve(
+    'gemini-ollama-devtools': path.resolve(
       __dirname,
       'packages/devtools/src/index.ts',
     ),

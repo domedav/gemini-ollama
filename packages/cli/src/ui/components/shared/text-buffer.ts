@@ -16,7 +16,7 @@ import {
   getErrorMessage,
   unescapePath,
   type EditorType,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import {
   toCodePoints,
   cpLen,

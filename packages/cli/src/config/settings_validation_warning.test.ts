@@ -21,9 +21,9 @@ const mockIsWorkspaceTrusted = vi.hoisted(() =>
   vi.fn().mockReturnValue({ isTrusted: true, source: 'file' }),
 );
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('gemini-ollama-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('gemini-ollama-core')>();
   return {
     ...actual,
     coreEvents: mockCoreEvents,

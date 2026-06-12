@@ -16,7 +16,7 @@ import {
   UserAccountManager,
   debugLogger,
   getVersion,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 
 export const aboutCommand: SlashCommand = {
   name: 'about',

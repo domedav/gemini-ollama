@@ -9,7 +9,7 @@ import {
   AuthType,
   clearCachedCredentialFile,
   getVersion,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import * as acp from '@agentclientprotocol/sdk';
 import { z } from 'zod';
 import { SettingScope, type LoadedSettings } from '../config/settings.js';
@@ -84,8 +84,8 @@ export class GeminiAgent {
       protocolVersion: acp.PROTOCOL_VERSION,
       authMethods,
       agentInfo: {
-        name: 'gemini-cli',
-        title: 'Gemini CLI',
+        name: 'gemini-ollama',
+        title: 'Gemini Ollama',
         version,
       },
       agentCapabilities: {

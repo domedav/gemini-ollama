@@ -14,7 +14,7 @@ import {
   checkExhaustive,
   type SubagentActivityItem,
   SubagentState,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import {
   SubagentProgressDisplay,
   formatToolArgs,

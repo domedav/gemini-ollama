@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { debugLogger, writeToStdout } from '@google/gemini-cli-core';
+import { debugLogger, writeToStdout } from 'gemini-ollama-core';
 import type { LoadedSettings } from '../config/settings.js';
 import { sanitizeForDisplay } from '../ui/utils/textUtils.js';
 import { TerminalCapabilityManager } from '../ui/utils/terminalCapabilityManager.js';
@@ -45,9 +45,9 @@ function sanitizeNotificationContent(
   const body = sanitizeForDisplay(content.body, MAX_NOTIFICATION_BODY_CHARS);
 
   return {
-    title: title || 'Gemini CLI',
+    title: title || 'Gemini Ollama',
     subtitle: subtitle || undefined,
-    body: body || 'Open Gemini CLI for details.',
+    body: body || 'Open Gemini Ollama for details.',
   };
 }
 
@@ -56,14 +56,14 @@ export function buildRunEventNotificationContent(
 ): RunEventNotificationContent {
   if (event.type === 'attention') {
     return sanitizeNotificationContent({
-      title: 'Gemini CLI needs your attention',
+      title: 'Gemini Ollama needs your attention',
       subtitle: event.heading ?? 'Action required',
-      body: event.detail ?? 'Open Gemini CLI to continue.',
+      body: event.detail ?? 'Open Gemini Ollama to continue.',
     });
   }
 
   return sanitizeNotificationContent({
-    title: 'Gemini CLI session complete',
+    title: 'Gemini Ollama session complete',
     subtitle: 'Run finished',
     body: event.detail ?? 'The session finished successfully.',
   });

@@ -25,7 +25,7 @@ import {
   type Config,
   tmpdir,
   NoopSandboxManager,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import { createTestMergedSettings, SettingScope } from './settings.js';
 
 describe('ExtensionManager theme loading', () => {
@@ -35,7 +35,7 @@ describe('ExtensionManager theme loading', () => {
 
   beforeAll(async () => {
     tempHomeDir = await fs.promises.mkdtemp(
-      path.join(tmpdir(), 'gemini-cli-test-'),
+      path.join(tmpdir(), 'gemini-ollama-test-'),
     );
   });
 

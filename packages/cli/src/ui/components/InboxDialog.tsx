@@ -43,7 +43,7 @@ import {
   applyInboxMemoryPatch,
   dismissInboxMemoryPatch,
   isProjectSkillPatchTarget,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 
 type Phase =
   | 'list'

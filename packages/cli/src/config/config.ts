@@ -46,7 +46,7 @@ import {
   type HookEventName,
   type OutputFormat,
   detectIdeFromEnv,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import {
   type Settings,
   type MergedSettings,
@@ -68,7 +68,7 @@ import {
 } from './policy.js';
 import { ExtensionManager } from './extension-manager.js';
 import { McpServerEnablementManager } from './mcp/mcpServerEnablement.js';
-import type { ExtensionEvents } from '@google/gemini-cli-core/src/utils/extensionLoader.js';
+import type { ExtensionEvents } from 'gemini-ollama-core/src/utils/extensionLoader.js';
 import { requestConsentNonInteractive } from './extensions/consent.js';
 import { promptForSetting } from './extensions/extensionSettings.js';
 import type { EventEmitter } from 'node:stream';
@@ -166,7 +166,7 @@ export async function parseArguments(
     .locale('en')
     .scriptName('gemini')
     .usage(
-      'Usage: gemini [options] [command]\n\nGemini CLI - Defaults to interactive mode. Use -p/--prompt for non-interactive (headless) mode.',
+      'Usage: gemini [options] [command]\n\nGemini Ollama - Defaults to interactive mode. Use -p/--prompt for non-interactive (headless) mode.',
     )
     .option('isCommand', {
       type: 'boolean',
@@ -278,7 +278,7 @@ export async function parseArguments(
   yargsInstance.command(gemmaCommand);
 
   yargsInstance
-    .command('$0 [query..]', 'Launch Gemini CLI', (yargsInstance) =>
+    .command('$0 [query..]', 'Launch Gemini Ollama', (yargsInstance) =>
       yargsInstance
         .positional('query', {
           description:

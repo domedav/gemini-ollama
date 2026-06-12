@@ -13,9 +13,9 @@ import {
   detectIdeFromEnv,
   IDE_DEFINITIONS,
   type IdeInfo,
-} from '@google/gemini-cli-core/src/ide/detect-ide.js';
+} from 'gemini-ollama-core/src/ide/detect-ide.js';
 
-const CLI_IDE_COMPANION_IDENTIFIER = 'Google.gemini-cli-vscode-ide-companion';
+const CLI_IDE_COMPANION_IDENTIFIER = 'Google.gemini-ollama-vscode-ide-companion';
 const INFO_MESSAGE_SHOWN_KEY = 'geminiCliInfoMessageShown';
 export const DIFF_SCHEME = 'gemini-diff';
 
@@ -90,7 +90,7 @@ async function checkForUpdates(
       semver.gt(latestVersion, currentVersion)
     ) {
       const selection = await vscode.window.showInformationMessage(
-        `A new version (${latestVersion}) of the Gemini CLI Companion extension is available.`,
+        `A new version (${latestVersion}) of the Gemini Ollama Companion extension is available.`,
         'Update to latest version',
       );
       if (selection === 'Update to latest version') {
@@ -108,7 +108,7 @@ async function checkForUpdates(
 }
 
 export async function activate(context: vscode.ExtensionContext) {
-  logger = vscode.window.createOutputChannel('Gemini CLI IDE Companion');
+  logger = vscode.window.createOutputChannel('Gemini Ollama IDE Companion');
   log = createLogger(context, logger);
   log('Extension activated');
 
@@ -168,7 +168,7 @@ export async function activate(context: vscode.ExtensionContext) {
     !isManagedExtensionSurface
   ) {
     void vscode.window.showInformationMessage(
-      'Gemini CLI Companion extension successfully installed.',
+      'Gemini Ollama Companion extension successfully installed.',
     );
     context.globalState.update(INFO_MESSAGE_SHOWN_KEY, true);
   }
@@ -182,11 +182,11 @@ export async function activate(context: vscode.ExtensionContext) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       ideServer.syncEnvVars();
     })),
-    vscode.commands.registerCommand('gemini-cli.runGeminiCLI', async () => {
+    vscode.commands.registerCommand('gemini-ollama.runGeminiCLI', async () => {
       const workspaceFolders = vscode.workspace.workspaceFolders;
       if (!workspaceFolders || workspaceFolders.length === 0) {
         vscode.window.showInformationMessage(
-          'No folder open. Please open a folder to run Gemini CLI.',
+          'No folder open. Please open a folder to run Gemini Ollama.',
         );
         return;
       }
@@ -196,21 +196,21 @@ export async function activate(context: vscode.ExtensionContext) {
         selectedFolder = workspaceFolders[0];
       } else {
         selectedFolder = await vscode.window.showWorkspaceFolderPick({
-          placeHolder: 'Select a folder to run Gemini CLI in',
+          placeHolder: 'Select a folder to run Gemini Ollama in',
         });
       }
 
       if (selectedFolder) {
         const geminiCmd = 'gemini';
         const terminal = vscode.window.createTerminal({
-          name: `Gemini CLI (${selectedFolder.name})`,
+          name: `Gemini Ollama (${selectedFolder.name})`,
           cwd: selectedFolder.uri.fsPath,
         });
         terminal.show();
         terminal.sendText(geminiCmd);
       }
     }),
-    vscode.commands.registerCommand('gemini-cli.showNotices', async () => {
+    vscode.commands.registerCommand('gemini-ollama.showNotices', async () => {
       const noticePath = vscode.Uri.joinPath(
         context.extensionUri,
         'NOTICES.txt',

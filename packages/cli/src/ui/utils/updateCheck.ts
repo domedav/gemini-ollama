@@ -11,7 +11,7 @@ import {
   debugLogger,
   getChannelFromVersion,
   RELEASE_CHANNEL_STABILITY,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import type { LoadedSettings } from '../../config/settings.js';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -82,7 +82,7 @@ export async function checkForUpdates(
       const bestUpdate = getBestAvailableUpdate(nightlyUpdate, latestUpdate);
 
       if (bestUpdate && semver.gt(bestUpdate, currentVersion)) {
-        const message = `A new version of Gemini CLI is available! ${currentVersion} → ${bestUpdate}`;
+        const message = `A new version of Gemini Ollama is available! ${currentVersion} → ${bestUpdate}`;
         const type = semver.diff(bestUpdate, currentVersion) || undefined;
         return {
           message,
@@ -111,7 +111,7 @@ export async function checkForUpdates(
       }
 
       if (semver.gt(latestUpdate, currentVersion)) {
-        const message = `Gemini CLI update available! ${currentVersion} → ${latestUpdate}`;
+        const message = `Gemini Ollama update available! ${currentVersion} → ${latestUpdate}`;
         const type = semver.diff(latestUpdate, currentVersion) || undefined;
         return {
           message,

@@ -12,14 +12,14 @@ import {
   getToolCallDataSchema,
   isNodeError,
   performRestore,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import type { CommandContext } from './types.js';
 import type { Mock } from 'vitest';
 
 vi.mock('node:fs/promises');
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('gemini-ollama-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('gemini-ollama-core')>();
   return {
     ...actual,
     getCheckpointInfoList: vi.fn(),

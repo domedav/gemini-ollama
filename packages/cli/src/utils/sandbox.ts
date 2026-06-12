@@ -18,14 +18,14 @@ import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { quote, parse } from 'shell-quote';
 import { promisify } from 'node:util';
-import type { Config, SandboxConfig } from '@google/gemini-cli-core';
+import type { Config, SandboxConfig } from 'gemini-ollama-core';
 import {
   coreEvents,
   debugLogger,
   FatalSandboxError,
   GEMINI_DIR,
   homedir,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import { ConsolePatcher } from '../ui/utils/ConsolePatcher.js';
 import { randomBytes } from 'node:crypto';
 import {
@@ -248,7 +248,7 @@ export async function start_sandbox(
 
     debugLogger.log(`hopping into sandbox (command: ${command}) ...`);
 
-    // determine full path for gemini-cli to distinguish linked vs installed setting
+    // determine full path for gemini-ollama to distinguish linked vs installed setting
     const gcPath = process.argv[1] ? fs.realpathSync(process.argv[1]) : '';
 
     const projectSandboxDockerfile = path.join(
@@ -264,14 +264,14 @@ export async function start_sandbox(
     const workdir = path.resolve(process.cwd());
     const containerWorkdir = getContainerPath(workdir);
 
-    // if BUILD_SANDBOX is set, then call scripts/build_sandbox.js under gemini-cli repo
+    // if BUILD_SANDBOX is set, then call scripts/build_sandbox.js under gemini-ollama repo
     //
-    // note this can only be done with binary linked from gemini-cli repo
+    // note this can only be done with binary linked from gemini-ollama repo
     if (process.env['BUILD_SANDBOX']) {
-      if (!gcPath.includes('gemini-cli/packages/')) {
+      if (!gcPath.includes('gemini-ollama/packages/')) {
         throw new FatalSandboxError(
           'Cannot build sandbox using installed gemini binary; ' +
-            'run `npm link ./packages/cli` under gemini-cli repo to switch to linked binary.',
+            'run `npm link ./packages/cli` under gemini-ollama repo to switch to linked binary.',
         );
       } else {
         debugLogger.log('building sandbox ...');
@@ -303,8 +303,8 @@ export async function start_sandbox(
     if (!(await ensureSandboxImageIsPresent(command, image, cliConfig))) {
       const remedy =
         image === LOCAL_DEV_SANDBOX_IMAGE_NAME
-          ? 'Try running `npm run build:all` or `npm run build:sandbox` under the gemini-cli repo to build it locally, or check the image name and your network connection.'
-          : 'Please check the image name, your network connection, or notify gemini-cli-dev@google.com if the issue persists.';
+          ? 'Try running `npm run build:all` or `npm run build:sandbox` under the gemini-ollama repo to build it locally, or check the image name and your network connection.'
+          : 'Please check the image name, your network connection, or notify gemini-ollama-dev@google.com if the issue persists.';
       throw new FatalSandboxError(
         `Sandbox image '${image}' is missing or could not be pulled. ${remedy}`,
       );
@@ -503,7 +503,7 @@ export async function start_sandbox(
     const isIntegrationTest =
       process.env['GEMINI_CLI_INTEGRATION_TEST'] === 'true';
     const containerNamePrefix = isIntegrationTest
-      ? 'gemini-cli-integration-test'
+      ? 'gemini-ollama-integration-test'
       : imageName;
     const containerName = `${containerNamePrefix}-${randomBytes(6).toString(
       'hex',

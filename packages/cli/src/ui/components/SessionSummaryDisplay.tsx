@@ -12,7 +12,7 @@ import {
   escapeShellArg,
   isWindows,
   type ShellType,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 
 interface SessionSummaryDisplayProps {
   duration: string;

@@ -27,7 +27,7 @@ import {
   type GeminiCliOperation,
 } from './constants.js';
 
-const TRACER_NAME = 'gemini-cli';
+const TRACER_NAME = 'gemini-ollama';
 const TRACER_VERSION = 'v1';
 
 /**

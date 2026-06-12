@@ -7,7 +7,7 @@
 import { renderWithProviders } from '../../../test-utils/render.js';
 import { HintMessage } from './HintMessage.js';
 import { describe, it, expect, vi } from 'vitest';
-import { makeFakeConfig } from '@google/gemini-cli-core';
+import { makeFakeConfig } from 'gemini-ollama-core';
 
 describe('HintMessage', () => {
   afterEach(() => {

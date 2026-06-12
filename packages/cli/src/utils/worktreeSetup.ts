@@ -9,7 +9,7 @@ import {
   createWorktreeService,
   writeToStderr,
   type WorktreeInfo,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 
 /**
  * Sets up a git worktree for parallel sessions.

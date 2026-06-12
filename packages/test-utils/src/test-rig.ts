@@ -14,7 +14,7 @@ import { setTimeout as sleep } from 'node:timers/promises';
 import {
   PREVIEW_GEMINI_FLASH_MODEL,
   GEMINI_DIR,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 export { GEMINI_DIR };
 import * as pty from '@lydell/node-pty';
 import stripAnsi from 'strip-ansi';
@@ -382,7 +382,7 @@ export class TestRig {
     this.testName = testName;
     const sanitizedName = sanitizeTestName(testName);
     const testFileDir =
-      env['INTEGRATION_TEST_FILE_DIR'] || join(os.tmpdir(), 'gemini-cli-tests');
+      env['INTEGRATION_TEST_FILE_DIR'] || join(os.tmpdir(), 'gemini-ollama-tests');
     this.testDir = join(testFileDir, sanitizedName);
     this.homeDir = join(testFileDir, sanitizedName + '-home');
 
@@ -534,7 +534,7 @@ export class TestRig {
   }
 
   /**
-   * The command and args to use to invoke Gemini CLI. Allows us to switch
+   * The command and args to use to invoke Gemini Ollama. Allows us to switch
    * between using the bundled gemini.js (the default) and using the installed
    * 'gemini' (used to verify npm bundles).
    */

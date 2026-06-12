@@ -9,7 +9,7 @@ import {
   checkExhaustive,
   getErrorMessage,
   type GeminiCLIExtension,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import {
   ExtensionUpdateState,
   extensionUpdatesReducer,

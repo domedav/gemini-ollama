@@ -11,7 +11,7 @@ if (process.env['NO_COLOR'] !== undefined) {
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { themeManager, DEFAULT_THEME } from './theme-manager.js';
-import { debugLogger, type CustomTheme } from '@google/gemini-cli-core';
+import { debugLogger, type CustomTheme } from 'gemini-ollama-core';
 import * as fs from 'node:fs';
 import * as os from 'node:os';
 import type * as osActual from 'node:os';
@@ -26,9 +26,9 @@ vi.mock('node:os', async (importOriginal) => {
   };
 });
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('gemini-ollama-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('gemini-ollama-core')>();
   return {
     ...actual,
     homedir: () => os.homedir(),

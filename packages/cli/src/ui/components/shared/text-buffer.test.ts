@@ -42,7 +42,7 @@ import {
 } from './text-buffer.js';
 import { cpLen } from '../../utils/textUtils.js';
 import { type Key } from '../../hooks/useKeypress.js';
-import { escapePath } from '@google/gemini-cli-core';
+import { escapePath } from 'gemini-ollama-core';
 
 vi.mock('../../contexts/SettingsContext.js', async (importOriginal) => {
   const actual =
@@ -1163,7 +1163,7 @@ describe('useTextBuffer', () => {
     let tempDir: string;
 
     beforeEach(() => {
-      tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gemini-cli-test-'));
+      tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gemini-ollama-test-'));
     });
 
     afterEach(() => {

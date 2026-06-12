@@ -1843,7 +1843,7 @@ export async function connectToMcpServer(
 ): Promise<Client> {
   const mcpClient = new Client(
     {
-      name: 'gemini-cli-mcp-client',
+      name: 'gemini-ollama-mcp-client',
       version: clientVersion,
     },
     {

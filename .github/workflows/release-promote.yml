@@ -201,7 +201,7 @@ jobs:
           working-directory: './release'
 
   build-mac:
-    if: "github.repository == 'google-gemini/gemini-cli'"
+    if: "github.repository == 'domedav/gemini-ollama'"
     uses: './.github/workflows/build-unsigned-mac-binaries.yml'
     with:
       ref: '${{ github.event.inputs.ref }}'
@@ -381,8 +381,8 @@ jobs:
 
       - name: 'Configure Git User'
         run: |-
-          git config user.name "gemini-cli-robot"
-          git config user.email "gemini-cli-robot@google.com"
+          git config user.name "gemini-ollama-robot"
+          git config user.email "gemini-ollama-robot@google.com"
 
       - name: 'Create and switch to a new branch'
         id: 'release_branch'

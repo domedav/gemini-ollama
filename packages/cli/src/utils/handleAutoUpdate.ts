@@ -15,7 +15,7 @@ import {
   debugLogger,
   getChannelFromVersion,
   RELEASE_CHANNEL_STABILITY,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 
 let _updateInProgress = false;
 
@@ -39,7 +39,7 @@ export async function waitForUpdateCompletion(
   }
 
   debugLogger.log(
-    '\nGemini CLI is waiting for a background update to complete before restarting...',
+    '\nGemini Ollama is waiting for a background update to complete before restarting...',
   );
 
   return new Promise((resolve) => {

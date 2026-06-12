@@ -12,12 +12,12 @@ import {
   AuthType,
   UserAccountManager,
   type ContentGeneratorConfig,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 
 // Mock UserAccountManager to control cached account
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('gemini-ollama-core', async (importOriginal) => {
   const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('gemini-ollama-core')>();
   return {
     ...original,
     UserAccountManager: vi.fn().mockImplementation(() => ({

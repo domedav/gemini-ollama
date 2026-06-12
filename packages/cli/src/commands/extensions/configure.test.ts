@@ -14,13 +14,13 @@ import {
 } from 'vitest';
 import { configureCommand } from './configure.js';
 import yargs from 'yargs';
-import { debugLogger } from '@google/gemini-cli-core';
+import { debugLogger } from 'gemini-ollama-core';
 import {
   updateSetting,
   getScopedEnvContents,
   type ExtensionSetting,
 } from '../../config/extensions/extensionSettings.js';
-import { cleanupTmpDir } from '@google/gemini-cli-test-utils';
+import { cleanupTmpDir } from 'gemini-ollama-test-utils';
 import prompts from 'prompts';
 import * as fs from 'node:fs';
 import * as os from 'node:os';
@@ -88,7 +88,7 @@ describe('extensions configure command', () => {
     vi.clearAllMocks();
 
     tempWorkspaceDir = fs.mkdtempSync(
-      path.join(os.tmpdir(), 'gemini-cli-test-workspace-'),
+      path.join(os.tmpdir(), 'gemini-ollama-test-workspace-'),
     );
     vi.spyOn(process, 'cwd').mockReturnValue(tempWorkspaceDir);
     // Default behaviors

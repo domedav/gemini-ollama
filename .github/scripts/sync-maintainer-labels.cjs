@@ -13,12 +13,12 @@ const { Octokit } = require('@octokit/rest');
  * - Filters for OPEN issues only.
  * - Skips DUPLICATES.
  * - Skips Pull Requests.
- * - ONLY labels issues in the PUBLIC (gemini-cli) repo.
+ * - ONLY labels issues in the PUBLIC (gemini-ollama) repo.
  */
 
-const REPO_OWNER = 'google-gemini';
-const PUBLIC_REPO = 'gemini-cli';
-const PRIVATE_REPO = 'maintainers-gemini-cli';
+const REPO_OWNER = 'domedav';
+const PUBLIC_REPO = 'gemini-ollama';
+const PRIVATE_REPO = 'maintainers-gemini-ollama';
 const ALLOWED_REPOS = [PUBLIC_REPO, PRIVATE_REPO];
 
 const ROOT_ISSUES = [
@@ -37,7 +37,7 @@ const octokit = new Octokit({
 
 /**
  * Extracts child issue references from markdown Task Lists ONLY.
- * e.g. - [ ] #123 or - [x] google-gemini/gemini-cli#123
+ * e.g. - [ ] #123 or - [x] domedav/gemini-ollama#123
  */
 function extractTaskListLinks(text, contextOwner, contextRepo) {
   if (!text) return [];

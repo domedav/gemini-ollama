@@ -38,8 +38,8 @@ describe('isGitHubRepository', async () => {
 
   it('returns true if the remote is github.com', async () => {
     vi.mocked(child_process.execSync).mockReturnValueOnce(`
-      origin  https://github.com/sethvargo/gemini-cli (fetch)
-      origin  https://github.com/sethvargo/gemini-cli (push)
+      origin  https://github.com/sethvargo/gemini-ollama (fetch)
+      origin  https://github.com/sethvargo/gemini-ollama (push)
     `);
     expect(isGitHubRepository()).toBe(true);
   });

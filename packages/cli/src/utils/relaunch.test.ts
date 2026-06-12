@@ -21,9 +21,9 @@ const mocks = vi.hoisted(() => ({
   writeToStderr: vi.fn(),
 }));
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('gemini-ollama-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('gemini-ollama-core')>();
   return {
     ...actual,
     writeToStderr: mocks.writeToStderr,

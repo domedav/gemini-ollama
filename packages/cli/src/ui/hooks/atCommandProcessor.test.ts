@@ -32,8 +32,8 @@ import {
   CoreToolCallStatus,
   type Config,
   type DiscoveredMCPResource,
-} from '@google/gemini-cli-core';
-import * as core from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
+import * as core from 'gemini-ollama-core';
 import * as os from 'node:os';
 import type { UseHistoryManagerReturn } from './useHistoryManager.js';
 import * as fs from 'node:fs';
@@ -100,7 +100,7 @@ describe('handleAtCommand', () => {
       getWorkspaceContext: () => mockWorkspaceContext,
       getMemoryContextManager: () => undefined,
       storage: {
-        getProjectTempDir: () => path.join(os.tmpdir(), 'gemini-cli-temp'),
+        getProjectTempDir: () => path.join(os.tmpdir(), 'gemini-ollama-temp'),
       },
       isPathAllowed(this: Config, absolutePath: string): boolean {
         if (this.interactive && path.isAbsolute(absolutePath)) {

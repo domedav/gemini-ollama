@@ -18,7 +18,7 @@ import {
   coreEvents,
   GEMINI_DIR,
   type GeminiCLIExtension,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 
 vi.mock('node:os', () => ({
   homedir: vi.fn().mockReturnValue('/virtual-home'),
@@ -317,16 +317,16 @@ describe('ExtensionEnablementManager', () => {
 
   it('should correctly prioritize more specific enable rules', () => {
     manager.disable('ext-test', true, '/Users/chrstn');
-    manager.enable('ext-test', true, '/Users/chrstn/gemini-cli');
+    manager.enable('ext-test', true, '/Users/chrstn/gemini-ollama');
 
-    expect(manager.isEnabled('ext-test', '/Users/chrstn/gemini-cli')).toBe(
+    expect(manager.isEnabled('ext-test', '/Users/chrstn/gemini-ollama')).toBe(
       true,
     );
   });
 
   it('should not disable subdirectories if includeSubdirs is false', () => {
     manager.disable('ext-test', false, '/Users/chrstn');
-    expect(manager.isEnabled('ext-test', '/Users/chrstn/gemini-cli')).toBe(
+    expect(manager.isEnabled('ext-test', '/Users/chrstn/gemini-ollama')).toBe(
       true,
     );
   });

@@ -427,9 +427,9 @@ describe('Storage - System Paths', () => {
         '/Library/Application Support/GeminiCli/settings.json',
       );
     } else if (platform === 'win32') {
-      expect(result).toBe('C:\\ProgramData\\gemini-cli\\settings.json');
+      expect(result).toBe('C:\\ProgramData\\gemini-ollama\\settings.json');
     } else {
-      expect(result).toBe('/etc/gemini-cli/settings.json');
+      expect(result).toBe('/etc/gemini-ollama/settings.json');
     }
   });
 
@@ -450,9 +450,9 @@ describe('Storage - System Paths', () => {
     if (platform === 'darwin') {
       expect(result).toBe('/Library/Application Support/GeminiCli/policies');
     } else if (platform === 'win32') {
-      expect(result).toBe('C:\\ProgramData\\gemini-cli\\policies');
+      expect(result).toBe('C:\\ProgramData\\gemini-ollama\\policies');
     } else {
-      expect(result).toBe('/etc/gemini-cli/policies');
+      expect(result).toBe('/etc/gemini-ollama/policies');
     }
   });
 });

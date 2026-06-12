@@ -13,10 +13,10 @@ import {
   type SubagentProgress,
   type SubagentActivityItem,
   SubagentState,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import { TOOL_STATUS } from '../../constants.js';
 import { STATUS_INDICATOR_WIDTH } from './ToolShared.js';
-import { safeJsonToMarkdown } from '@google/gemini-cli-core';
+import { safeJsonToMarkdown } from 'gemini-ollama-core';
 
 export interface SubagentProgressDisplayProps {
   progress: SubagentProgress;

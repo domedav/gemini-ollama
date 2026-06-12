@@ -53,7 +53,7 @@ describe('BaseTokenStorage', () => {
   let storage: TestTokenStorage;
 
   beforeEach(() => {
-    storage = new TestTokenStorage('gemini-cli-mcp-oauth');
+    storage = new TestTokenStorage('gemini-ollama-mcp-oauth');
   });
 
   describe('validateCredentials', () => {

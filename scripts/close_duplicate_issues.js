@@ -34,12 +34,12 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('owner', {
     type: 'string',
-    default: 'google-gemini',
+    default: 'domedav',
     description: 'Repository owner',
   })
   .option('repo', {
     type: 'string',
-    default: 'gemini-cli',
+    default: 'gemini-ollama',
     description: 'Repository name',
   })
   .option('dry-run', {

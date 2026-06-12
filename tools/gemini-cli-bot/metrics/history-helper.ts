@@ -10,7 +10,7 @@ import { join } from 'node:path';
 const TIMESERIES_FILE = join(
   process.cwd(),
   'tools',
-  'gemini-cli-bot',
+  'gemini-ollama-bot',
   'history',
   'metrics-timeseries.csv',
 );

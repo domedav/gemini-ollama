@@ -11,7 +11,7 @@ import {
   listMemoryFiles,
   refreshMemory,
   showMemory,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import type {
   Command,
   CommandContext,

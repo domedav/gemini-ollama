@@ -11,13 +11,13 @@ import {
   type ResumedSessionData,
   type ConversationRecord,
   loadConversationRecord,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 
 import { GeminiCliSession } from './session.js';
 import type { GeminiCliAgentOptions } from './types.js';
 
 /**
- * The main entry point for the Gemini CLI SDK.
+ * The main entry point for the Gemini Ollama SDK.
  *
  * An agent encapsulates configuration (instructions, tools, skills, model)
  * and can create new sessions or resume existing ones.

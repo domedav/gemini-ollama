@@ -11,11 +11,11 @@ import {
   ValidationRequiredError,
   ProjectIdRequiredError,
   AuthType,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('gemini-ollama-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('gemini-ollama-core')>();
   return {
     ...actual,
   };
@@ -127,7 +127,7 @@ describe('auth', () => {
     );
     expect(result).toEqual({
       authError:
-        'This account requires setting the GOOGLE_CLOUD_PROJECT or GOOGLE_CLOUD_PROJECT_ID env var. See https://goo.gle/gemini-cli-auth-docs#workspace-gca',
+        'This account requires setting the GOOGLE_CLOUD_PROJECT or GOOGLE_CLOUD_PROJECT_ID env var. See https://goo.gle/gemini-ollama-auth-docs#workspace-gca',
       accountSuspensionInfo: null,
     });
     expect(result.authError).not.toContain('Failed to login');

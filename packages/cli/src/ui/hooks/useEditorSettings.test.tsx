@@ -26,13 +26,13 @@ import {
   type EditorType,
   hasValidEditorCommand,
   allowEditorTypeInSandbox,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import type { UseHistoryManagerReturn } from './useHistoryManager.js';
 
 import { SettingPaths } from '../../config/settingPaths.js';
 
-vi.mock('@google/gemini-cli-core', async () => {
-  const actual = await vi.importActual('@google/gemini-cli-core');
+vi.mock('gemini-ollama-core', async () => {
+  const actual = await vi.importActual('gemini-ollama-core');
   return {
     ...actual,
     hasValidEditorCommand: vi.fn(() => true),

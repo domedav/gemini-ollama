@@ -21,7 +21,7 @@ import {
   AuthType,
   type AdminControlsSettings,
   createCache,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import stripJsonComments from 'strip-json-comments';
 import { DefaultLight } from '../ui/themes/builtin/light/default-light.js';
 import { DefaultDark } from '../ui/themes/builtin/dark/default-dark.js';
@@ -108,9 +108,9 @@ export function getSystemSettingsPath(): string {
   if (platform() === 'darwin') {
     return '/Library/Application Support/GeminiCli/settings.json';
   } else if (platform() === 'win32') {
-    return 'C:\\ProgramData\\gemini-cli\\settings.json';
+    return 'C:\\ProgramData\\gemini-ollama\\settings.json';
   } else {
-    return '/etc/gemini-cli/settings.json';
+    return '/etc/gemini-ollama/settings.json';
   }
 }
 

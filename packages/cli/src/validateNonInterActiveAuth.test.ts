@@ -21,8 +21,8 @@ import {
   debugLogger,
   ExitCodes,
   coreEvents,
-} from '@google/gemini-cli-core';
-import type { Config } from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
+import type { Config } from 'gemini-ollama-core';
 import * as auth from './config/auth.js';
 import { type LoadedSettings } from './config/settings.js';
 

@@ -16,7 +16,7 @@ import {
   homedir,
   checkPathTrust,
   isHeadlessMode,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import stripJsonComments from 'strip-json-comments';
 
 export const USER_SETTINGS_DIR = path.join(homedir(), GEMINI_DIR);
@@ -70,7 +70,7 @@ export interface CheckpointingSettings {
  * Loads settings from user and workspace directories.
  * Project settings override user settings if the workspace is trusted.
  *
- * How is it different to gemini-cli/cli: Returns already merged settings rather
+ * How is it different to gemini-ollama/cli: Returns already merged settings rather
  * than `LoadedSettings` (unnecessary since we are not modifying users
  * settings.json).
  */

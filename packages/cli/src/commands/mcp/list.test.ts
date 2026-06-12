@@ -19,7 +19,7 @@ import {
   createTransport,
   debugLogger,
   type AdminControlsSettings,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { ExtensionStorage } from '../../config/extensions/storage.js';
 import { ExtensionManager } from '../../config/extension-manager.js';
@@ -40,9 +40,9 @@ vi.mock('../../config/extensions/storage.js', () => ({
   },
 }));
 vi.mock('../../config/extension-manager.js');
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('gemini-ollama-core', async (importOriginal) => {
   const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('gemini-ollama-core')>();
   return {
     ...original,
     createTransport: vi.fn(),

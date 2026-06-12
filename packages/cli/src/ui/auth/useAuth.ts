@@ -10,8 +10,8 @@ import {
   AuthType,
   type Config,
   debugLogger,
-} from '@google/gemini-cli-core';
-import { getErrorMessage } from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
+import { getErrorMessage } from 'gemini-ollama-core';
 import { AuthState } from '../types.js';
 
 export async function validateAuthMethodWithSettings(

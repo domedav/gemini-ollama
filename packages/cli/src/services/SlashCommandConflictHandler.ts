@@ -9,7 +9,7 @@ import {
   CoreEvent,
   type SlashCommandConflictsPayload,
   type SlashCommandConflict,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import { CommandKind } from '../ui/commands/types.js';
 
 /**

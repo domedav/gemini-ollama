@@ -11,13 +11,13 @@ import {
   type SlashCommand,
   type CommandContext,
 } from '../ui/commands/types.js';
-import type { MessageActionReturn, Config } from '@google/gemini-cli-core';
+import type { MessageActionReturn, Config } from 'gemini-ollama-core';
 import {
   isNightly,
   startupProfiler,
   getAdminErrorMessage,
   AuthType,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import { aboutCommand } from '../ui/commands/aboutCommand.js';
 import { agentsCommand } from '../ui/commands/agentsCommand.js';
 import { authCommand } from '../ui/commands/authCommand.js';
@@ -68,7 +68,7 @@ import { voiceCommand } from '../ui/commands/voiceCommand.js';
 
 /**
  * Loads the core, hard-coded slash commands that are an integral part
- * of the Gemini CLI application.
+ * of the Gemini Ollama application.
  */
 export class BuiltinCommandLoader implements ICommandLoader {
   constructor(private config: Config | null) {}

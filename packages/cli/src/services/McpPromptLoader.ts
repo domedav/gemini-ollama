@@ -8,7 +8,7 @@ import {
   getErrorMessage,
   getMCPServerPrompts,
   type Config,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import {
   CommandKind,
   type CommandContext,

@@ -14,14 +14,14 @@ import type {
   Config,
   GeminiClient,
   CompletionBehavior,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import {
   isBinary,
   ShellExecutionService,
   ExecutionLifecycleService,
   CoreToolCallStatus,
   escapeShellArg,
-} from '@google/gemini-cli-core';
+} from 'gemini-ollama-core';
 import { type PartListUnion } from '@google/genai';
 import type { UseHistoryManagerReturn } from './useHistoryManager.js';
 import { SHELL_COMMAND_NAME } from '../constants.js';
