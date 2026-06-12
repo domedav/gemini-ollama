@@ -29,16 +29,7 @@ export const DEFAULT_MODEL_CONFIGS: ModelConfigServiceConfig = {
     },
   },
   overrides: [],
-  modelDefinitions: {
-    'gemma4': {
-      displayName: 'Gemma 4',
-      tier: 'pro',
-      family: 'gemma',
-      isPreview: false,
-      isVisible: true,
-      features: { thinking: false, multimodalToolUse: true },
-    },
-  },
+  modelDefinitions: {},
   modelIdResolutions: {
       'auto': { default: 'auto' },
       'pro': { default: 'auto' },

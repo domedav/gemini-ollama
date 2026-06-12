@@ -9,6 +9,7 @@
 import { spawn } from 'node:child_process';
 import os from 'node:os';
 import v8 from 'node:v8';
+import net from 'node:net';
 import {
   RELAUNCH_EXIT_CODE,
   getSpawnConfig,
@@ -81,7 +82,52 @@ async function getMemoryNodeArgs(): Promise<string[]> {
   return [];
 }
 
+async function ensureOllamaRunning() {
+  const checkOllama = () => new Promise<boolean>((resolve) => {
+    const client = new net.Socket();
+    client.setTimeout(1000);
+    client.on('connect', () => {
+      client.destroy();
+      resolve(true);
+    });
+    client.on('error', () => {
+      client.destroy();
+      resolve(false);
+    });
+    client.on('timeout', () => {
+      client.destroy();
+      resolve(false);
+    });
+    client.connect(11434, '127.0.0.1');
+  });
+
+  const isRunning = await checkOllama();
+  if (!isRunning) {
+    process.stdout.write('Ollama is not running. Attempting to start "ollama serve"...\n');
+    try {
+      const ollama = spawn('ollama', ['serve'], {
+        detached: true,
+        stdio: 'ignore'
+      });
+      ollama.unref();
+      
+      // Wait a few seconds for it to start
+      for (let i = 0; i < 5; i++) {
+        await new Promise(r => setTimeout(r, 1000));
+        if (await checkOllama()) {
+          process.stdout.write('Ollama started successfully.\n');
+          return;
+        }
+      }
+      process.stderr.write('Warning: Failed to confirm Ollama started. Please ensure Ollama is installed and run "ollama serve" manually.\n');
+    } catch {
+      process.stderr.write('Error: Failed to launch "ollama serve". Is Ollama installed?\n');
+    }
+  }
+}
+
 async function run() {
+  await ensureOllamaRunning();
   if (!process.env['GEMINI_CLI_NO_RELAUNCH'] && !process.env['SANDBOX']) {
     // --- Lightweight Parent Process / Daemon ---
     // We avoid importing heavy dependencies here to save ~1.5s of startup time.
@@ -173,7 +219,7 @@ async function run() {
       if (error instanceof FatalError) {
         let errorMessage = error.message;
         if (!process.env['NO_COLOR']) {
-          errorMessage = `\x1b[31m${errorMessage}\x1b[0m`;
+          errorMessage = `\\x1b[31m${errorMessage}\\x1b[0m`;
         }
         writeToStderr(errorMessage + '\n');
         process.exit(error.exitCode);
