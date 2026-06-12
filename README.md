@@ -93,7 +93,6 @@ While in the chat interface, use these commands to control your agent:
 
 - `/model` - Change the active LLM.
 - `/clear` - Clear the current chat history.
-- `/stats` - View token usage and performance metrics.
 - `/help` - See a full list of available commands and keyboard shortcuts.
 
 ---
