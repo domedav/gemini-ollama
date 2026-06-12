@@ -29,47 +29,27 @@ Learn all about Gemini CLI in our [documentation](https://geminicli.com/docs/).
 
 ## 📦 Installation
 
-See
-[Gemini CLI installation, execution, and releases](https://www.geminicli.com/docs/get-started/installation)
-for recommended system specifications and a detailed installation guide.
+This version of Gemini CLI (called `gemini-ollama` or `gmol`) is designed to run locally. You can install it by cloning the repository and building it from source.
 
-### Quick Install
-
-#### Run instantly with npx
+### Build from Source
 
 ```bash
-# Using npx (no installation required)
-npx @google/gemini-cli
+git clone https://github.com/domedav/gemini-ollama.git
+cd gemini-ollama
+npm install
+npm run build
 ```
 
-#### Install globally with npm
+### Install Globally
+
+After building, you can link it to use the `gmol` or `gemini-ollama` commands globally:
 
 ```bash
-npm install -g @google/gemini-cli
+# Inside the root directory
+npm link ./packages/cli
 ```
 
-#### Install globally with Homebrew (macOS/Linux)
-
-```bash
-brew install gemini-cli
-```
-
-#### Install globally with MacPorts (macOS)
-
-```bash
-sudo port install gemini-cli
-```
-
-#### Install with Anaconda (for restricted environments)
-
-```bash
-# Create and activate a new environment
-conda create -y -n gemini_env -c conda-forge nodejs
-conda activate gemini_env
-
-# Install Gemini CLI globally via npm (inside the environment)
-npm install -g @google/gemini-cli
-```
+Now you can use `gmol` or `gemini-ollama` anywhere!
 
 ## Release Channels
 
