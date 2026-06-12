@@ -206,7 +206,7 @@ async function initOauthClient(
   // In Google Compute Engine based environments (including Cloud Shell), we can
   // use Application Default Credentials (ADC) provided via its metadata server
   // to authenticate non-interactively using the identity of the logged-in user.
-  if (authType === AuthType.COMPUTE_ADC) {
+  if (authType === AuthType.OLLAMA) {
     try {
       debugLogger.log(
         'Attempting to authenticate via metadata server application default credentials.',

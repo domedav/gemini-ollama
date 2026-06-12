@@ -97,7 +97,7 @@ export class ComponentRig {
     // Refresh auth using USE_GEMINI to initialize the real BaseLlmClient.
     // This must happen BEFORE stubbing GEMINI_CLI_HOME because OAuth credential
     // lookup resolves through homedir() → GEMINI_CLI_HOME.
-    await this.config.refreshAuth(AuthType.USE_GEMINI);
+    await this.config.refreshAuth(AuthType.OLLAMA);
 
     // Isolate storage paths (session files, skills, extraction state) by
     // pointing GEMINI_CLI_HOME at a per-test temp directory.  Storage resolves

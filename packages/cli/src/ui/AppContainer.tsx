@@ -767,7 +767,7 @@ export const AppContainer = (props: AppContainerProps) => {
   // TODO: Consider handling other auth types that should also skip the blocking screen
   const isAuthenticating =
     authState === AuthState.Unauthenticated &&
-    settings.merged.security.auth.selectedType !== AuthType.USE_GEMINI;
+    settings.merged.security.auth.selectedType !== AuthType.OLLAMA;
 
   // Session browser and resume functionality
   const isGeminiClientInitialized = config.getGeminiClient()?.isInitialized();
@@ -802,7 +802,7 @@ export const AppContainer = (props: AppContainerProps) => {
       if (authType) {
         const previousAuthType =
           config.getContentGeneratorConfig()?.authType ?? 'unknown';
-        if (authType === AuthType.LOGIN_WITH_GOOGLE) {
+        if (authType === AuthType.OLLAMA) {
           setAuthContext({ requiresRestart: true });
         } else {
           setAuthContext({});
@@ -835,7 +835,7 @@ export const AppContainer = (props: AppContainerProps) => {
         }
 
         if (
-          authType === AuthType.LOGIN_WITH_GOOGLE &&
+          authType === AuthType.OLLAMA &&
           config.isBrowserLaunchSuppressed()
         ) {
           writeToStdout(`
@@ -862,7 +862,7 @@ Logging in with Google... Restarting Gemini CLI to continue.
 
         await saveApiKey(apiKey);
         await reloadApiKey();
-        await config.refreshAuth(AuthType.USE_GEMINI);
+        await config.refreshAuth(AuthType.OLLAMA);
         setAuthState(AuthState.Authenticated);
       } catch (e) {
         onAuthError(
@@ -905,7 +905,7 @@ Logging in with Google... Restarting Gemini CLI to continue.
       // We skip validation for Gemini API key here because it might be stored
       // in the keychain, which we can't check synchronously.
       // The useAuth hook handles validation for this case.
-      if (settings.merged.security.auth.selectedType === AuthType.USE_GEMINI) {
+      if (settings.merged.security.auth.selectedType === AuthType.OLLAMA) {
         return;
       }
 
@@ -2171,7 +2171,7 @@ Logging in with Google... Restarting Gemini CLI to continue.
 
   const isAwaitingLoginRestart = authState === AuthState.AwaitingLoginRestart;
   const loginRestartMessage =
-    settings.merged.security.auth.selectedType === AuthType.USE_VERTEX_AI
+    settings.merged.security.auth.selectedType === AuthType.OLLAMA
       ? 'Authenticating to Vertex AI in Cloud Shell requires a restart to apply project settings.'
       : undefined;
 

@@ -86,7 +86,7 @@ describe('Auto Routing Fallback Integration', () => {
     client = new BaseLlmClient(
       fakeGenerator,
       config,
-      AuthType.LOGIN_WITH_GOOGLE,
+      AuthType.OLLAMA,
     );
 
     let attemptsPro = 0;
@@ -165,7 +165,7 @@ describe('Auto Routing Fallback Integration', () => {
     const clientNonAuto = new BaseLlmClient(
       fakeGenerator,
       configNonAuto,
-      AuthType.LOGIN_WITH_GOOGLE,
+      AuthType.OLLAMA,
     );
 
     let attemptsPro = 0;
@@ -246,7 +246,7 @@ describe('Auto Routing Fallback Integration', () => {
     const clientDynamic = new BaseLlmClient(
       fakeGenerator,
       configDynamic,
-      AuthType.LOGIN_WITH_GOOGLE,
+      AuthType.OLLAMA,
     );
 
     let attemptsPro = 0;
@@ -324,7 +324,7 @@ describe('Auto Routing Fallback Integration', () => {
     client = new BaseLlmClient(
       fakeGenerator,
       config,
-      AuthType.LOGIN_WITH_GOOGLE,
+      AuthType.OLLAMA,
     );
 
     let attemptsPro = 0;

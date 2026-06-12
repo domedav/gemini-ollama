@@ -19,8 +19,8 @@ export async function createCodeAssistContentGenerator(
   sessionId?: string,
 ): Promise<ContentGenerator> {
   if (
-    authType === AuthType.LOGIN_WITH_GOOGLE ||
-    authType === AuthType.COMPUTE_ADC
+    authType === AuthType.OLLAMA ||
+    authType === AuthType.OLLAMA
   ) {
     const authClient = await getOauthClient(authType, config);
     const userData = await setupUser(authClient, config, httpOptions);

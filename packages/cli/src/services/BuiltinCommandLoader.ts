@@ -234,7 +234,7 @@ export class BuiltinCommandLoader implements ICommandLoader {
       terminalSetupCommand,
       ...(this.config?.isVoiceModeEnabled() ? [voiceCommand] : []),
       ...(this.config?.getContentGeneratorConfig()?.authType ===
-      AuthType.LOGIN_WITH_GOOGLE
+      AuthType.OLLAMA
         ? [upgradeCommand]
         : []),
     ];

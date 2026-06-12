@@ -346,7 +346,7 @@ describe('useGeminiStream', () => {
       model: 'test-model',
       apiKey: 'test-key',
       vertexai: false,
-      authType: AuthType.USE_GEMINI,
+      authType: AuthType.OLLAMA,
     })),
     getContentGenerator: vi.fn(),
     isInteractive: () => false,
@@ -2249,7 +2249,7 @@ describe('useGeminiStream', () => {
     it('should call parseAndFormatApiError with the correct authType on stream initialization failure', async () => {
       // 1. Setup
       const mockError = new Error('Rate limit exceeded');
-      const mockAuthType = AuthType.LOGIN_WITH_GOOGLE;
+      const mockAuthType = AuthType.OLLAMA;
       mockParseAndFormatApiError.mockClear();
       mockSendMessageStream.mockReturnValue(
         (async function* () {

@@ -115,7 +115,7 @@ describe('AcpSessionManager', () => {
     (loadSettings as unknown as Mock).mockImplementation(() => ({
       merged: {
         security: {
-          auth: { selectedType: AuthType.LOGIN_WITH_GOOGLE },
+          auth: { selectedType: AuthType.OLLAMA },
           enablePermanentToolApproval: true,
         },
         mcpServers: {},
@@ -270,7 +270,7 @@ describe('AcpSessionManager', () => {
   it('should fail session creation if Gemini API key is missing', async () => {
     (loadSettings as unknown as Mock).mockImplementation(() => ({
       merged: {
-        security: { auth: { selectedType: AuthType.USE_GEMINI } },
+        security: { auth: { selectedType: AuthType.OLLAMA } },
         mcpServers: {},
       },
       setValue: vi.fn(),

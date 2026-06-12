@@ -46,12 +46,12 @@ export class GeminiAgent {
 
     const authMethods = [
       {
-        id: AuthType.LOGIN_WITH_GOOGLE,
+        id: AuthType.OLLAMA,
         name: 'Log in with Google',
         description: 'Log in with your Google account',
       },
       {
-        id: AuthType.USE_GEMINI,
+        id: AuthType.OLLAMA,
         name: 'Gemini API key',
         description: 'Use an API key with Gemini Developer API',
         _meta: {
@@ -61,12 +61,12 @@ export class GeminiAgent {
         },
       },
       {
-        id: AuthType.USE_VERTEX_AI,
+        id: AuthType.OLLAMA,
         name: 'Vertex AI',
         description: 'Use an API key with Vertex AI GenAI API',
       },
       {
-        id: AuthType.GATEWAY,
+        id: AuthType.OLLAMA,
         name: 'AI API Gateway',
         description: 'Use a custom AI API Gateway',
         _meta: {

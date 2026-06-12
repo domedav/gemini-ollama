@@ -71,8 +71,8 @@ export class AcpSessionManager {
     const authType =
       loadedSettings.merged.security.auth.selectedType ||
       (authDetails.baseUrl || process.env['GOOGLE_GEMINI_BASE_URL']
-        ? AuthType.GATEWAY
-        : AuthType.USE_GEMINI);
+        ? AuthType.OLLAMA
+        : AuthType.OLLAMA);
 
     let isAuthenticated = false;
     let authErrorMessage = '';
@@ -88,7 +88,7 @@ export class AcpSessionManager {
       // Extra validation for Gemini API key
       const contentGeneratorConfig = config.getContentGeneratorConfig();
       if (
-        authType === AuthType.USE_GEMINI &&
+        authType === AuthType.OLLAMA &&
         (!contentGeneratorConfig || !contentGeneratorConfig.apiKey)
       ) {
         isAuthenticated = false;
@@ -142,7 +142,7 @@ export class AcpSessionManager {
       session.sendAvailableCommands();
     }, 0);
 
-    const { availableModels, currentModelId } = buildAvailableModels(
+    const { availableModels, currentModelId } = await buildAvailableModels(
       config,
       loadedSettings,
     );
@@ -210,7 +210,7 @@ export class AcpSessionManager {
       session.sendAvailableCommands();
     }, 0);
 
-    const { availableModels, currentModelId } = buildAvailableModels(
+    const { availableModels, currentModelId } = await buildAvailableModels(
       config,
       this.settings,
     );
@@ -237,7 +237,7 @@ export class AcpSessionManager {
     const selectedAuthType =
       this.settings.merged.security.auth.selectedType ||
       (authDetails.baseUrl || process.env['GOOGLE_GEMINI_BASE_URL']
-        ? AuthType.GATEWAY
+        ? AuthType.OLLAMA
         : undefined);
 
     if (!selectedAuthType) {

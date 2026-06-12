@@ -3395,7 +3395,7 @@ MALICIOUS_VAR=allowed-because-trusted
         loadEnvironment(
           createMockSettings({
             tools: { sandbox: false },
-            security: { auth: { selectedType: AuthType.USE_VERTEX_AI } },
+            security: { auth: { selectedType: AuthType.OLLAMA } },
           }).merged,
           MOCK_WORKSPACE_DIR,
         );
@@ -3421,7 +3421,7 @@ MALICIOUS_VAR=allowed-because-trusted
         loadEnvironment(
           createMockSettings({
             tools: { sandbox: false },
-            security: { auth: { selectedType: AuthType.USE_VERTEX_AI } },
+            security: { auth: { selectedType: AuthType.OLLAMA } },
           }).merged,
           MOCK_WORKSPACE_DIR,
         );
@@ -3449,7 +3449,7 @@ MALICIOUS_VAR=allowed-because-trusted
         loadEnvironment(
           createMockSettings({
             tools: { sandbox: false },
-            security: { auth: { selectedType: AuthType.USE_VERTEX_AI } },
+            security: { auth: { selectedType: AuthType.OLLAMA } },
           }).merged,
           MOCK_WORKSPACE_DIR,
         );
@@ -3478,7 +3478,7 @@ MALICIOUS_VAR=allowed-because-trusted
         loadEnvironment(
           createMockSettings({
             tools: { sandbox: false },
-            security: { auth: { selectedType: AuthType.USE_VERTEX_AI } },
+            security: { auth: { selectedType: AuthType.OLLAMA } },
           }).merged,
           MOCK_WORKSPACE_DIR,
         );
@@ -3501,7 +3501,7 @@ MALICIOUS_VAR=allowed-because-trusted
         loadEnvironment(
           createMockSettings({
             tools: { sandbox: false },
-            security: { auth: { selectedType: AuthType.USE_VERTEX_AI } },
+            security: { auth: { selectedType: AuthType.OLLAMA } },
           }).merged,
           MOCK_WORKSPACE_DIR,
         );

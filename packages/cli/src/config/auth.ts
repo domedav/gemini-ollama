@@ -12,13 +12,13 @@ export async function validateAuthMethod(
 ): Promise<string | null> {
   loadEnvironment(loadSettings().merged, process.cwd());
   if (
-    authMethod === AuthType.LOGIN_WITH_GOOGLE ||
-    authMethod === AuthType.COMPUTE_ADC
+    authMethod === AuthType.OLLAMA ||
+    authMethod === AuthType.OLLAMA
   ) {
     return null;
   }
 
-  if (authMethod === AuthType.USE_GEMINI) {
+  if (authMethod === AuthType.OLLAMA) {
     const key = process.env['GEMINI_API_KEY'] || (await loadApiKey());
     if (!key) {
       return (
@@ -29,7 +29,7 @@ export async function validateAuthMethod(
     return null;
   }
 
-  if (authMethod === AuthType.USE_VERTEX_AI) {
+  if (authMethod === AuthType.OLLAMA) {
     const hasVertexProjectLocationConfig =
       !!process.env['GOOGLE_CLOUD_PROJECT'] &&
       !!process.env['GOOGLE_CLOUD_LOCATION'];

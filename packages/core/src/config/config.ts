@@ -956,7 +956,7 @@ export class Config implements McpContext, AgentLoopContext {
   private readonly billing: {
     overageStrategy: OverageStrategy;
   };
-  private readonly vertexAiRouting: VertexAiRoutingConfig | undefined;
+  // private readonly vertexAiRouting: VertexAiRoutingConfig | undefined;
 
   private readonly enableAgents: boolean;
   private agents: AgentSettings;
@@ -1090,7 +1090,7 @@ export class Config implements McpContext, AgentLoopContext {
       useCollector: params.telemetry?.useCollector,
       useCliAuth: params.telemetry?.useCliAuth,
     };
-    this.usageStatisticsEnabled = params.usageStatisticsEnabled ?? true;
+    this.usageStatisticsEnabled = params.usageStatisticsEnabled ?? false;
 
     this.fileFiltering = {
       respectGitIgnore:
@@ -1392,7 +1392,7 @@ export class Config implements McpContext, AgentLoopContext {
     this.billing = {
       overageStrategy: params.billing?.overageStrategy ?? 'ask',
     };
-    this.vertexAiRouting = params.vertexAiRouting;
+    // this.vertexAiRouting = params.vertexAiRouting;
 
     if (params.contextFileName) {
       setGeminiMdFilename(params.contextFileName);
@@ -1576,8 +1576,8 @@ export class Config implements McpContext, AgentLoopContext {
     // Vertex and Genai have incompatible encryption and sending history with
     // thoughtSignature from Genai to Vertex will fail, we need to strip them
     if (
-      this.contentGeneratorConfig?.authType === AuthType.USE_GEMINI &&
-      authMethod !== AuthType.USE_GEMINI
+      this.contentGeneratorConfig?.authType === AuthType.OLLAMA &&
+      authMethod !== AuthType.OLLAMA
     ) {
       // Restore the conversation history to the new client
       this._geminiClient.stripThoughtsFromHistory();
@@ -1589,21 +1589,16 @@ export class Config implements McpContext, AgentLoopContext {
     // Clear stale authType to ensure getGemini31LaunchedSync doesn't return stale results
     // during the transition.
     if (this.contentGeneratorConfig) {
-      this.contentGeneratorConfig.authType = undefined;
+      (this.contentGeneratorConfig as any).authType = AuthType.OLLAMA;
     }
 
-    const newContentGeneratorConfig = await createContentGeneratorConfig(
+    const newContentGeneratorConfig = createContentGeneratorConfig(
       this,
-      authMethod,
-      apiKey,
-      baseUrl,
-      customHeaders,
-      this.vertexAiRouting,
+      AuthType.OLLAMA,
     );
     this.contentGenerator = await createContentGenerator(
       newContentGeneratorConfig,
       this,
-      this.getSessionId(),
     );
     // Only assign to instance properties after successful initialization
     this.contentGeneratorConfig = newContentGeneratorConfig;
@@ -1640,8 +1635,8 @@ export class Config implements McpContext, AgentLoopContext {
 
     const authType = this.contentGeneratorConfig.authType;
     if (
-      authType === AuthType.USE_GEMINI ||
-      authType === AuthType.USE_VERTEX_AI
+      authType === AuthType.OLLAMA ||
+      authType === AuthType.OLLAMA
     ) {
       this.setHasAccessToPreviewModel(true);
     }
@@ -3494,8 +3489,8 @@ export class Config implements McpContext, AgentLoopContext {
    */
   getProModelNoAccessSync(): boolean {
     if (
-      this.contentGeneratorConfig?.authType !== AuthType.LOGIN_WITH_GOOGLE &&
-      this.contentGeneratorConfig?.authType !== AuthType.COMPUTE_ADC
+      this.contentGeneratorConfig?.authType !== AuthType.OLLAMA &&
+      this.contentGeneratorConfig?.authType !== AuthType.OLLAMA
     ) {
       return false;
     }
@@ -3520,7 +3515,7 @@ export class Config implements McpContext, AgentLoopContext {
   async getUseCustomToolModel(): Promise<boolean> {
     const useGemini3_1 = await this.getGemini31Launched();
     const authType = this.contentGeneratorConfig?.authType;
-    return useGemini3_1 && authType === AuthType.USE_GEMINI;
+    return useGemini3_1 && authType === AuthType.OLLAMA;
   }
 
   /**
@@ -3531,14 +3526,14 @@ export class Config implements McpContext, AgentLoopContext {
   getUseCustomToolModelSync(): boolean {
     const useGemini3_1 = this.getGemini31LaunchedSync();
     const authType = this.contentGeneratorConfig?.authType;
-    return useGemini3_1 && authType === AuthType.USE_GEMINI;
+    return useGemini3_1 && authType === AuthType.OLLAMA;
   }
 
   private isGemini31LaunchedForAuthType(authType?: AuthType): boolean {
     return (
-      authType === AuthType.USE_GEMINI ||
-      authType === AuthType.USE_VERTEX_AI ||
-      authType === AuthType.GATEWAY
+      authType === AuthType.OLLAMA ||
+      authType === AuthType.OLLAMA ||
+      authType === AuthType.OLLAMA
     );
   }
 
@@ -3563,7 +3558,7 @@ export class Config implements McpContext, AgentLoopContext {
     if (hasAccess) {
       // Gemini API key users should have the ability to manually select the
       // old preview flash model.
-      if (authType === AuthType.USE_GEMINI) {
+      if (authType === AuthType.OLLAMA) {
         setFlashModels('gemini-3-flash-preview', 'gemini-3.5-flash');
       } else {
         setFlashModels('gemini-3.5-flash', 'gemini-3.5-flash');

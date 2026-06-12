@@ -1280,11 +1280,11 @@ export function getConventionAttributes(event: {
  */
 function getGenAiProvider(authType?: string): GenAiProviderName {
   switch (authType) {
-    case AuthType.USE_VERTEX_AI:
-    case AuthType.COMPUTE_ADC:
-    case AuthType.LOGIN_WITH_GOOGLE:
+    case AuthType.OLLAMA:
+    case AuthType.OLLAMA:
+    case AuthType.OLLAMA:
       return GenAiProviderName.GCP_VERTEX_AI;
-    case AuthType.USE_GEMINI:
+    case AuthType.OLLAMA:
     default:
       return GenAiProviderName.GCP_GEN_AI;
   }

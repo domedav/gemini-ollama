@@ -39,26 +39,26 @@ describe('validateAuthMethod', () => {
   it.each([
     {
       description: 'should return null for LOGIN_WITH_GOOGLE',
-      authType: AuthType.LOGIN_WITH_GOOGLE,
+      authType: AuthType.OLLAMA,
       envs: {},
       expected: null,
     },
     {
       description: 'should return null for COMPUTE_ADC',
-      authType: AuthType.COMPUTE_ADC,
+      authType: AuthType.OLLAMA,
       envs: {},
       expected: null,
     },
     {
       description: 'should return null for USE_GEMINI if GEMINI_API_KEY is set',
-      authType: AuthType.USE_GEMINI,
+      authType: AuthType.OLLAMA,
       envs: { GEMINI_API_KEY: 'test-key' },
       expected: null,
     },
     {
       description:
         'should return an error message for USE_GEMINI if GEMINI_API_KEY is not set',
-      authType: AuthType.USE_GEMINI,
+      authType: AuthType.OLLAMA,
       envs: {},
       expected:
         'When using Gemini API, you must specify the GEMINI_API_KEY environment variable.\n' +
@@ -67,7 +67,7 @@ describe('validateAuthMethod', () => {
     {
       description:
         'should return null for USE_VERTEX_AI if GOOGLE_CLOUD_PROJECT and GOOGLE_CLOUD_LOCATION are set',
-      authType: AuthType.USE_VERTEX_AI,
+      authType: AuthType.OLLAMA,
       envs: {
         GOOGLE_CLOUD_PROJECT: 'test-project',
         GOOGLE_CLOUD_LOCATION: 'test-location',
@@ -77,14 +77,14 @@ describe('validateAuthMethod', () => {
     {
       description:
         'should return null for USE_VERTEX_AI if GOOGLE_API_KEY is set',
-      authType: AuthType.USE_VERTEX_AI,
+      authType: AuthType.OLLAMA,
       envs: { GOOGLE_API_KEY: 'test-api-key' },
       expected: null,
     },
     {
       description:
         'should return an error message for USE_VERTEX_AI if no required environment variables are set',
-      authType: AuthType.USE_VERTEX_AI,
+      authType: AuthType.OLLAMA,
       envs: {},
       expected:
         'When using Vertex AI, you must specify either:\n' +

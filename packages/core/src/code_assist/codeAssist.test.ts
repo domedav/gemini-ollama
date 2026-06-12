@@ -58,13 +58,13 @@ describe('codeAssist', () => {
 
       const generator = await createCodeAssistContentGenerator(
         httpOptions,
-        AuthType.LOGIN_WITH_GOOGLE,
+        AuthType.OLLAMA,
         mockConfig,
         'session-123',
       );
 
       expect(getOauthClient).toHaveBeenCalledWith(
-        AuthType.LOGIN_WITH_GOOGLE,
+        AuthType.OLLAMA,
         mockConfig,
       );
       expect(setupUser).toHaveBeenCalledWith(
@@ -91,12 +91,12 @@ describe('codeAssist', () => {
 
       const generator = await createCodeAssistContentGenerator(
         httpOptions,
-        AuthType.COMPUTE_ADC,
+        AuthType.OLLAMA,
         mockConfig,
       );
 
       expect(getOauthClient).toHaveBeenCalledWith(
-        AuthType.COMPUTE_ADC,
+        AuthType.OLLAMA,
         mockConfig,
       );
       expect(setupUser).toHaveBeenCalledWith(

@@ -111,7 +111,7 @@ describe('<ModelDialog />', () => {
 
   const renderComponent = async (
     configValue = mockConfig as Config,
-    authType = AuthType.LOGIN_WITH_GOOGLE,
+    authType = AuthType.OLLAMA,
   ) => {
     const settings = createMockSettings({
       security: {
@@ -396,7 +396,7 @@ describe('<ModelDialog />', () => {
     it('shows Gemini 3.1 models in manual view when Gemini 3.1 IS launched', async () => {
       mockGetGemini31LaunchedSync.mockReturnValue(true);
       const { lastFrame, stdin, waitUntilReady, unmount } =
-        await renderComponent(mockConfig as Config, AuthType.USE_VERTEX_AI);
+        await renderComponent(mockConfig as Config, AuthType.OLLAMA);
 
       // Go to manual view
       await act(async () => {
@@ -418,7 +418,7 @@ describe('<ModelDialog />', () => {
       mockGetGemini31LaunchedSync.mockReturnValue(true);
       const { stdin, waitUntilReady, unmount } = await renderComponent(
         mockConfig as Config,
-        AuthType.USE_GEMINI,
+        AuthType.OLLAMA,
       );
 
       // Go to manual view

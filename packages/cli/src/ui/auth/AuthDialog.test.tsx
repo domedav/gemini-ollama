@@ -111,8 +111,8 @@ describe('AuthDialog', () => {
       'Use metadata server application default credentials';
     const computeAdcItem = (label: string) => ({
       label,
-      value: AuthType.COMPUTE_ADC,
-      key: AuthType.COMPUTE_ADC,
+      value: AuthType.OLLAMA,
+      key: AuthType.OLLAMA,
     });
 
     it.each([
@@ -159,16 +159,16 @@ describe('AuthDialog', () => {
   });
 
   it('filters auth types when enforcedType is set', async () => {
-    props.settings.merged.security.auth.enforcedType = AuthType.USE_GEMINI;
+    props.settings.merged.security.auth.enforcedType = AuthType.OLLAMA;
     const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
     const items = mockedRadioButtonSelect.mock.calls[0][0].items;
     expect(items).toHaveLength(1);
-    expect(items[0].value).toBe(AuthType.USE_GEMINI);
+    expect(items[0].value).toBe(AuthType.OLLAMA);
     unmount();
   });
 
   it('sets initial index to 0 when enforcedType is set', async () => {
-    props.settings.merged.security.auth.enforcedType = AuthType.USE_GEMINI;
+    props.settings.merged.security.auth.enforcedType = AuthType.OLLAMA;
     const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
     const { initialIndex } = mockedRadioButtonSelect.mock.calls[0][0];
     expect(initialIndex).toBe(0);
@@ -180,28 +180,28 @@ describe('AuthDialog', () => {
       {
         setup: () => {
           props.settings.merged.security.auth.selectedType =
-            AuthType.USE_VERTEX_AI;
+            AuthType.OLLAMA;
         },
-        expected: AuthType.USE_VERTEX_AI,
+        expected: AuthType.OLLAMA,
         desc: 'from settings',
       },
       {
         setup: () => {
-          vi.stubEnv('GEMINI_DEFAULT_AUTH_TYPE', AuthType.USE_GEMINI);
+          vi.stubEnv('GEMINI_DEFAULT_AUTH_TYPE', AuthType.OLLAMA);
         },
-        expected: AuthType.USE_GEMINI,
+        expected: AuthType.OLLAMA,
         desc: 'from GEMINI_DEFAULT_AUTH_TYPE env var',
       },
       {
         setup: () => {
           vi.stubEnv('GEMINI_API_KEY', 'test-key');
         },
-        expected: AuthType.USE_GEMINI,
+        expected: AuthType.OLLAMA,
         desc: 'from GEMINI_API_KEY env var',
       },
       {
         setup: () => {},
-        expected: AuthType.LOGIN_WITH_GOOGLE,
+        expected: AuthType.OLLAMA,
         desc: 'defaults to Sign in with Google',
       },
     ])('selects initial auth type $desc', async ({ setup, expected }) => {
@@ -219,10 +219,10 @@ describe('AuthDialog', () => {
       const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
-      await handleAuthSelect(AuthType.USE_GEMINI);
+      await handleAuthSelect(AuthType.OLLAMA);
 
       expect(mockedValidateAuthMethod).toHaveBeenCalledWith(
-        AuthType.USE_GEMINI,
+        AuthType.OLLAMA,
         props.settings,
       );
       expect(props.onAuthError).toHaveBeenCalledWith('Invalid method');
@@ -235,7 +235,7 @@ describe('AuthDialog', () => {
       const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
-      await handleAuthSelect(AuthType.LOGIN_WITH_GOOGLE);
+      await handleAuthSelect(AuthType.OLLAMA);
 
       expect(props.setAuthContext).toHaveBeenCalledWith({
         requiresRestart: true,
@@ -249,7 +249,7 @@ describe('AuthDialog', () => {
       const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
-      await handleAuthSelect(AuthType.USE_VERTEX_AI);
+      await handleAuthSelect(AuthType.OLLAMA);
 
       expect(props.setAuthContext).toHaveBeenCalledWith({
         requiresRestart: true,
@@ -263,7 +263,7 @@ describe('AuthDialog', () => {
       const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
-      await handleAuthSelect(AuthType.USE_VERTEX_AI);
+      await handleAuthSelect(AuthType.OLLAMA);
 
       expect(props.setAuthContext).toHaveBeenCalledWith({});
       unmount();
@@ -274,7 +274,7 @@ describe('AuthDialog', () => {
       const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
-      await handleAuthSelect(AuthType.USE_GEMINI);
+      await handleAuthSelect(AuthType.OLLAMA);
 
       expect(props.setAuthContext).toHaveBeenCalledWith({});
       unmount();
@@ -288,7 +288,7 @@ describe('AuthDialog', () => {
       const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
-      await handleAuthSelect(AuthType.USE_GEMINI);
+      await handleAuthSelect(AuthType.OLLAMA);
 
       expect(props.setAuthState).toHaveBeenCalledWith(
         AuthState.AwaitingApiKeyInput,
@@ -304,7 +304,7 @@ describe('AuthDialog', () => {
       const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
-      await handleAuthSelect(AuthType.USE_GEMINI);
+      await handleAuthSelect(AuthType.OLLAMA);
 
       expect(props.setAuthState).toHaveBeenCalledWith(
         AuthState.AwaitingApiKeyInput,
@@ -320,7 +320,7 @@ describe('AuthDialog', () => {
       const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
-      await handleAuthSelect(AuthType.USE_GEMINI);
+      await handleAuthSelect(AuthType.OLLAMA);
 
       expect(props.setAuthState).toHaveBeenCalledWith(
         AuthState.AwaitingApiKeyInput,
@@ -333,12 +333,12 @@ describe('AuthDialog', () => {
       vi.stubEnv('GEMINI_API_KEY', 'test-key-from-env');
       // Simulate switching from a different auth method (e.g., Google Login → API key)
       props.settings.merged.security.auth.selectedType =
-        AuthType.LOGIN_WITH_GOOGLE;
+        AuthType.OLLAMA;
 
       const { unmount } = await renderWithProviders(<AuthDialog {...props} />);
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
-      await handleAuthSelect(AuthType.USE_GEMINI);
+      await handleAuthSelect(AuthType.OLLAMA);
 
       expect(props.setAuthState).toHaveBeenCalledWith(
         AuthState.AwaitingApiKeyInput,
@@ -359,7 +359,7 @@ describe('AuthDialog', () => {
       const { onSelect: handleAuthSelect } =
         mockedRadioButtonSelect.mock.calls[0][0];
       await act(async () => {
-        await handleAuthSelect(AuthType.LOGIN_WITH_GOOGLE);
+        await handleAuthSelect(AuthType.OLLAMA);
         await vi.runAllTimersAsync();
       });
 
@@ -409,7 +409,7 @@ describe('AuthDialog', () => {
         desc: 'calls setAuthState(Unauthenticated) on escape if auth method is set',
         setup: () => {
           props.settings.merged.security.auth.selectedType =
-            AuthType.USE_GEMINI;
+            AuthType.OLLAMA;
         },
         expectations: (p: typeof props) => {
           expect(p.setAuthState).toHaveBeenCalledWith(
@@ -447,7 +447,7 @@ describe('AuthDialog', () => {
     });
 
     it('renders correctly with enforced auth type', async () => {
-      props.settings.merged.security.auth.enforcedType = AuthType.USE_GEMINI;
+      props.settings.merged.security.auth.enforcedType = AuthType.OLLAMA;
       const { lastFrame, unmount } = await renderWithProviders(
         <AuthDialog {...props} />,
       );

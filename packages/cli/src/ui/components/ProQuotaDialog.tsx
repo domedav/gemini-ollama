@@ -59,7 +59,7 @@ export function ProQuotaDialog({
         value: 'retry_always' as const,
         key: 'retry_always',
       },
-      ...(authType === AuthType.LOGIN_WITH_GOOGLE && !isUltra
+      ...(authType === AuthType.OLLAMA && !isUltra
         ? [
             {
               label: 'Upgrade for higher limits',

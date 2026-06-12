@@ -6,12 +6,6 @@
 
 import type { GenerateContentConfig } from '@google/genai';
 import type { ModelPolicy } from '../availability/modelPolicy.js';
-import {
-  getDisplayString,
-  PREVIEW_GEMINI_3_1_MODEL,
-  isProModel,
-  getAutoModelDescription,
-} from '../config/models.js';
 
 // The primary key for the ModelConfig is the model string. However, we also
 // support a secondary key to limit the override scope, typically an agent name.
@@ -148,16 +142,40 @@ export class ModelConfigService {
    * Returns a standardized list of available model options based on the resolution context.
    * This logic is shared across the TUI and ACP mode.
    */
-  getAvailableModelOptions(context: ResolutionContext): Array<{
-    modelId: string;
-    name: string;
-    description: string;
-    tier: string;
-  }> {
-    const definitions = this.config.modelDefinitions ?? {};
+  async fetchOllamaModels(): Promise<Record<string, ModelDefinition>> {
+    try {
+      const baseUrl = process.env['OLLAMA_BASE_URL'] || 'http://localhost:11434';
+      const response = await fetch(`${baseUrl}/api/tags`);
+      if (!response.ok) return {};
+      const data = await response.json();
+      const definitions: Record<string, ModelDefinition> = {};
+      for (const model of data.models || []) {
+        definitions[model.name] = {
+          displayName: model.name,
+          tier: 'custom',
+          family: 'ollama',
+          isPreview: false,
+          isVisible: true,
+          features: { thinking: false, multimodalToolUse: true },
+        };
+      }
+      return definitions;
+    } catch (e) {
+      return {};
+    }
+  }
+
+  async getAvailableModelOptions(context: ResolutionContext): Promise<
+    Array<{
+      modelId: string;
+      name: string;
+      description: string;
+      tier: string;
+    }>
+  > {
+    const ollamaModels = await this.fetchOllamaModels();
+    const definitions = { ...(this.config.modelDefinitions ?? {}), ...ollamaModels };
     const shouldShowPreviewModels = context.hasAccessToPreview ?? false;
-    const useGemini31 = context.useGemini3_1 ?? false;
-    const useGemini3_5Flash = context.useGemini3_5Flash ?? false;
 
     const mainOptions = Object.entries(definitions)
       .filter(([_, m]) => {
@@ -167,21 +185,10 @@ export class ModelConfigService {
         return true;
       })
       .map(([id, m]) => {
-        let description = m.dialogDescription ?? '';
-        if (id === 'auto') {
-          description = getAutoModelDescription(
-            shouldShowPreviewModels,
-            useGemini31,
-            useGemini3_5Flash,
-          );
-        } else if (id === 'auto-gemini-3' && useGemini31) {
-          description = description.replace('gemini-3-pro', 'gemini-3.1-pro');
-        }
-
         return {
           modelId: id,
-          name: m.displayName ?? getDisplayString(id),
-          description,
+          name: m.displayName ?? id,
+          description: m.dialogDescription ?? '',
           tier: m.tier ?? 'auto',
         };
       });
@@ -191,19 +198,12 @@ export class ModelConfigService {
         if (m.isVisible !== true) return false;
         if (m.isPreview && !shouldShowPreviewModels) return false;
         if (m.tier === 'auto') return false;
-        if (context.hasAccessToProModel === false && isProModel(id))
-          return false;
-        if (id === PREVIEW_GEMINI_3_1_MODEL && !useGemini31) return false;
         return true;
       })
       .map(([id, m]) => {
-        const resolvedId = this.resolveModelId(id, context);
-        const titleId = this.resolveModelId(id, {
-          useGemini3_1: useGemini31,
-        });
         return {
-          modelId: resolvedId,
-          name: m.displayName ?? getDisplayString(titleId),
+          modelId: id,
+          name: m.displayName ?? id,
           description: m.dialogDescription ?? '',
           tier: m.tier ?? 'custom',
         };

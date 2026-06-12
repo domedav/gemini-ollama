@@ -402,7 +402,7 @@ export const Footer: React.FC = () => {
         if (!settings.merged.ui.showUserIdentity) break;
         if (!authType) break;
         const displayStr =
-          authType === AuthType.LOGIN_WITH_GOOGLE
+          authType === AuthType.OLLAMA
             ? (email ?? 'google')
             : authType;
         addCol(

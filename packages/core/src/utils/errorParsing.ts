@@ -23,9 +23,9 @@ function getRateLimitMessage(
   fallbackModel?: string,
 ): string {
   switch (authType) {
-    case AuthType.USE_GEMINI:
+    case AuthType.OLLAMA:
       return RATE_LIMIT_ERROR_MESSAGE_USE_GEMINI;
-    case AuthType.USE_VERTEX_AI:
+    case AuthType.OLLAMA:
       return RATE_LIMIT_ERROR_MESSAGE_VERTEX;
     default:
       return getRateLimitErrorMessageDefault(fallbackModel);

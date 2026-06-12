@@ -71,7 +71,7 @@ describe('ProQuotaDialog', () => {
             message="paid tier quota error"
             isTerminalQuotaError={true}
             isModelNotFoundError={false}
-            authType={AuthType.LOGIN_WITH_GOOGLE}
+            authType={AuthType.OLLAMA}
             onChoice={mockOnChoice}
           />,
         );
@@ -109,7 +109,7 @@ describe('ProQuotaDialog', () => {
             message="paid tier quota error"
             isTerminalQuotaError={true}
             isModelNotFoundError={false}
-            authType={AuthType.USE_GEMINI}
+            authType={AuthType.OLLAMA}
             onChoice={mockOnChoice}
           />,
         );
@@ -173,7 +173,7 @@ describe('ProQuotaDialog', () => {
             message="free tier quota error"
             isTerminalQuotaError={true}
             isModelNotFoundError={false}
-            authType={AuthType.LOGIN_WITH_GOOGLE}
+            authType={AuthType.OLLAMA}
             onChoice={mockOnChoice}
           />,
         );
@@ -211,7 +211,7 @@ describe('ProQuotaDialog', () => {
             message="free tier quota error"
             isTerminalQuotaError={true}
             isModelNotFoundError={false}
-            authType={AuthType.LOGIN_WITH_GOOGLE}
+            authType={AuthType.OLLAMA}
             tierName="Gemini Advanced Ultra"
             onChoice={mockOnChoice}
           />,
@@ -282,7 +282,7 @@ describe('ProQuotaDialog', () => {
             message="You don't have access to gemini-3-pro-preview yet."
             isTerminalQuotaError={false}
             isModelNotFoundError={true}
-            authType={AuthType.LOGIN_WITH_GOOGLE}
+            authType={AuthType.OLLAMA}
             onChoice={mockOnChoice}
           />,
         );
@@ -320,7 +320,7 @@ describe('ProQuotaDialog', () => {
             message="You don't have access to gemini-3-pro-preview yet."
             isTerminalQuotaError={false}
             isModelNotFoundError={true}
-            authType={AuthType.USE_GEMINI}
+            authType={AuthType.OLLAMA}
             onChoice={mockOnChoice}
           />,
         );

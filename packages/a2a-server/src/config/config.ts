@@ -255,7 +255,7 @@ async function refreshAuthentication(
 
     logger.info(`[${logPrefix}] Attempting COMPUTE_ADC first.`);
     try {
-      await config.refreshAuth(AuthType.COMPUTE_ADC);
+      await config.refreshAuth(AuthType.OLLAMA);
       logger.info(`[${logPrefix}] COMPUTE_ADC successful.`);
     } catch (adcError) {
       const adcMessage =
@@ -281,7 +281,7 @@ async function refreshAuthentication(
         `[${logPrefix}] COMPUTE_ADC failed, falling back to LOGIN_WITH_GOOGLE.`,
       );
       try {
-        await config.refreshAuth(AuthType.LOGIN_WITH_GOOGLE);
+        await config.refreshAuth(AuthType.OLLAMA);
       } catch (e) {
         if (e instanceof FatalAuthenticationError) {
           const originalMessage = e instanceof Error ? e.message : String(e);
@@ -298,7 +298,7 @@ async function refreshAuthentication(
     );
   } else if (process.env['GEMINI_API_KEY']) {
     logger.info(`[${logPrefix}] Using Gemini API Key`);
-    await config.refreshAuth(AuthType.USE_GEMINI);
+    await config.refreshAuth(AuthType.OLLAMA);
   } else {
     const errorMessage = `[${logPrefix}] Unable to set GeneratorConfig. Please provide a GEMINI_API_KEY or set USE_CCPA.`;
     logger.error(errorMessage);

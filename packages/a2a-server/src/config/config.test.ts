@@ -542,16 +542,16 @@ describe('loadConfig', () => {
 
         await loadConfig(mockSettings, mockExtensionLoader, taskId);
 
-        expect(refreshAuthMock).toHaveBeenCalledWith(AuthType.COMPUTE_ADC);
+        expect(refreshAuthMock).toHaveBeenCalledWith(AuthType.OLLAMA);
         expect(refreshAuthMock).not.toHaveBeenCalledWith(
-          AuthType.LOGIN_WITH_GOOGLE,
+          AuthType.OLLAMA,
         );
       });
 
       it('should fallback to LOGIN_WITH_GOOGLE if COMPUTE_ADC fails and interactive mode is available', async () => {
         vi.mocked(isHeadlessMode).mockReturnValue(false);
         const refreshAuthMock = vi.fn().mockImplementation((authType) => {
-          if (authType === AuthType.COMPUTE_ADC) {
+          if (authType === AuthType.OLLAMA) {
             return Promise.reject(new Error('ADC failed'));
           }
           return Promise.resolve();
@@ -560,9 +560,9 @@ describe('loadConfig', () => {
 
         await loadConfig(mockSettings, mockExtensionLoader, taskId);
 
-        expect(refreshAuthMock).toHaveBeenCalledWith(AuthType.COMPUTE_ADC);
+        expect(refreshAuthMock).toHaveBeenCalledWith(AuthType.OLLAMA);
         expect(refreshAuthMock).toHaveBeenCalledWith(
-          AuthType.LOGIN_WITH_GOOGLE,
+          AuthType.OLLAMA,
         );
       });
 
@@ -570,7 +570,7 @@ describe('loadConfig', () => {
         vi.mocked(isHeadlessMode).mockReturnValue(true);
 
         const refreshAuthMock = vi.fn().mockImplementation((authType) => {
-          if (authType === AuthType.COMPUTE_ADC) {
+          if (authType === AuthType.OLLAMA) {
             return Promise.reject(new Error('ADC not found'));
           }
           return Promise.resolve();
@@ -583,9 +583,9 @@ describe('loadConfig', () => {
           'COMPUTE_ADC failed: ADC not found. (LOGIN_WITH_GOOGLE fallback skipped due to headless mode. Run in an interactive terminal to use OAuth.)',
         );
 
-        expect(refreshAuthMock).toHaveBeenCalledWith(AuthType.COMPUTE_ADC);
+        expect(refreshAuthMock).toHaveBeenCalledWith(AuthType.OLLAMA);
         expect(refreshAuthMock).not.toHaveBeenCalledWith(
-          AuthType.LOGIN_WITH_GOOGLE,
+          AuthType.OLLAMA,
         );
       });
 
@@ -593,10 +593,10 @@ describe('loadConfig', () => {
         vi.mocked(isHeadlessMode).mockReturnValue(false);
 
         const refreshAuthMock = vi.fn().mockImplementation((authType) => {
-          if (authType === AuthType.COMPUTE_ADC) {
+          if (authType === AuthType.OLLAMA) {
             throw new Error('ADC failed');
           }
-          if (authType === AuthType.LOGIN_WITH_GOOGLE) {
+          if (authType === AuthType.OLLAMA) {
             throw new FatalAuthenticationError('OAuth failed');
           }
           return Promise.resolve();
